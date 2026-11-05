@@ -111,14 +111,14 @@ export default function ProductCard({ product, layout = 'grid' }: ProductCardPro
       animate={{ opacity: 1, y: 0 }}
       whileHover={{ y: -4 }}
       transition={{ type: 'spring', stiffness: 200, damping: 24 }}
-      className="group relative flex h-full flex-col rounded-[16px] border border-transparent bg-panel p-3 transition-all duration-500 hover:border-hairline hover:shadow-quiet"
+      className="group relative flex h-full flex-col rounded-[16px] border border-transparent bg-panel p-2.5 transition-all duration-500 hover:border-hairline hover:shadow-quiet phone-lg:p-3"
     >
-      <div className="absolute right-5 top-5 z-10">{wishlistButton}</div>
+      <div className="absolute right-3.5 top-3.5 z-10 phone-lg:right-5 phone-lg:top-5">{wishlistButton}</div>
 
       <button
         onClick={() => setQuickViewProduct(product)}
         aria-label={`View ${product.title}`}
-        className="frame-still relative flex h-52 w-full items-center justify-center p-4"
+        className="frame-still relative flex h-44 w-full items-center justify-center p-3 phone-lg:h-52 phone-lg:p-4 xl:h-56 4xl:h-64"
       >
         <img
           src={product.thumbnail}

@@ -110,15 +110,15 @@ export default function CheckoutModal() {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-stretch justify-center overflow-y-auto sm:items-center sm:p-6">
       <div className="fixed inset-0 bg-scrim backdrop-blur-[3px]" onClick={handleClose} />
 
-      <div className="card-premium modal-in relative z-10 my-8 w-full max-w-2xl overflow-hidden bg-canvas text-left">
+      <div className="card-premium modal-in relative z-10 flex min-h-full w-full flex-col overflow-hidden rounded-none phone-xl:my-8 phone-xl:min-h-0 phone-xl:max-h-[92dvh] phone-xl:rounded-[16px] max-w-2xl bg-canvas text-left">
 
-        <div className="flex items-center justify-between border-b border-hairline p-6">
-          <div>
+        <div className="flex shrink-0 items-center justify-between gap-3 border-b border-hairline p-4 phone-lg:p-6">
+          <div className="min-w-0">
             <p className="eyebrow">Private checkout</p>
-            <h2 className="title-editorial mt-2 text-[26px]">
+            <h2 className="title-editorial mt-2 text-[22px] phone-lg:text-[26px]">
               {step === 3 ? 'Order confirmed' : 'Complete your order'}
             </h2>
           </div>
@@ -141,7 +141,7 @@ export default function CheckoutModal() {
           </div>
         )}
 
-        <div className="p-6 sm:p-8 space-y-6">
+        <div className="thin-scroll flex-1 space-y-5 overflow-y-auto p-4 pb-[max(1.25rem,env(safe-area-inset-bottom))] phone-lg:space-y-6 phone-lg:p-6 sm:p-8">
           {step === 1 && (
             <form
               onSubmit={(e) => {
@@ -190,7 +190,7 @@ export default function CheckoutModal() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 gap-3 phone-xl:grid-cols-3 phone-lg:gap-4">
                 <div>
                   <label className="text-xs text-quiet font-semibold block mb-1">City</label>
                   <input
@@ -241,7 +241,7 @@ export default function CheckoutModal() {
                 <CreditCard className="w-4 h-4" /> Payment Selection
               </h3>
 
-              <div className="grid grid-cols-3 gap-3">
+              <div className="grid grid-cols-1 gap-2.5 phone-lg:grid-cols-3 phone-lg:gap-3">
                 {[
                   { id: 'card', label: 'Credit Card', icon: CreditCard },
                   { id: 'paypal', label: 'Wallet', icon: DollarSign },

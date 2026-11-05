@@ -29,8 +29,8 @@ function AppContent() {
           <div className="flex flex-col h-full">
             {/* Atelier Sub-navigation */}
             <div className="border-b border-hairline bg-panel/80 backdrop-blur">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-center gap-2 py-3">
-                <span className="eyebrow mr-4 hidden sm:inline">Atelier Console</span>
+              <div className="shell snap-rail items-center py-3 sm:justify-center">
+                <span className="eyebrow mr-2 hidden shrink-0 sm:inline">Atelier Console</span>
                 <button
                   onClick={() => setAdminTab('inventory')}
                   className={`px-5 py-2 rounded-full text-xs font-semibold tracking-wide transition-all ${
@@ -63,7 +63,7 @@ function AppContent() {
       {/* Atelier Toggle */}
       <button
         onClick={() => setIsAdminView(!isAdminView)}
-        className="fixed bottom-5 left-5 px-4 py-2 bg-solid text-on-solid/90 text-[11px] font-semibold tracking-[0.14em] uppercase rounded-full shadow-scrim hover:opacity-90 transition-colors z-50"
+        className="fixed bottom-[max(1rem,env(safe-area-inset-bottom))] left-3 z-50 rounded-full bg-solid px-3.5 py-2 text-[10.5px] font-semibold uppercase tracking-[0.14em] text-on-solid/90 shadow-scrim transition-colors hover:opacity-90 phone-lg:bottom-5 phone-lg:left-5 phone-lg:px-4 phone-lg:text-[11px]"
       >
         {isAdminView ? '← Boutique' : 'Atelier'}
       </button>

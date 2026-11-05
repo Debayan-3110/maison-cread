@@ -50,17 +50,17 @@ const AdminDashboard: React.FC = () => {
       initial="hidden"
       animate="visible"
       variants={containerVariants}
-      className="p-6 space-y-8 fade-up"
+      className="shell fade-up py-6 space-y-5 phone-lg:space-y-8"
     >
-      <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-semibold text-body tracking-tight">Business Intelligence</h1>
-        <div className="px-4 py-2 bg-accent-soft text-accent rounded-full text-sm font-bold border border-hairline">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <h1 className="text-[22px] font-semibold text-body tracking-tight phone-lg:text-[26px] 3xl:text-3xl">Business Intelligence</h1>
+        <div className="shrink-0 px-3 py-1.5 phone-lg:px-4 phone-lg:py-2 bg-accent-soft text-accent rounded-full text-[11px] phone-lg:text-sm font-bold border border-hairline">
           Global Analytics
         </div>
       </div>
 
       {/* Bento Grid Layout */}
-      <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-6 auto-rows-[160px]">
+      <div className="grid grid-cols-1 gap-4 auto-rows-[minmax(11rem,auto)] phone-lg:gap-6 md:grid-cols-4 md:auto-rows-[160px] lg:grid-cols-6">
 
         {/* Total Queries - Medium Card */}
         <motion.div

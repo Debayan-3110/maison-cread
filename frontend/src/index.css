@@ -371,3 +371,140 @@ button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-
   }
 }
 
+
+/* ==================================================================
+   DEVICE SCALE (Tailwind v4 theme tokens) - additive by design.
+   Tailwinds own sm/md/lg/xl/2xl keep their default meaning, so all
+   existing markup keeps working; these add the missing device steps.
+
+   320 xs | 375 phone | 390 phone-lg | 430 phone-xl
+   768 md | 1024 lg   | 1280 xl      | 1440 3xl | 1920 4xl
+   ================================================================== */
+@theme {
+  --breakpoint-xs: 20rem;            /* 320  - small Android / SE 1st gen */
+  --breakpoint-phone: 23.4375rem;    /* 375  - iPhone SE-8 / most Androids */
+  --breakpoint-phone-lg: 24.375rem;  /* 390  - iPhone 12-15, Pixel 7-9 */
+  --breakpoint-phone-xl: 26.875rem;  /* 430  - Pro Max / Galaxy Ultra */
+  --breakpoint-3xl: 90rem;           /* 1440 - laptop / small desktop */
+  --breakpoint-4xl: 120rem;          /* 1920 - large desktop */
+}
+
+@layer base {
+  html {
+    max-width: 100%;
+    overflow-x: clip;
+  }
+
+  body {
+    max-width: 100%;
+    overflow-x: clip;
+    min-height: 100dvh;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  img, video, canvas, iframe { max-width: 100%; }
+
+  /* Phones auto-zoom the page when a focused control is under 16px. */
+  @media (max-width: 39.9375rem) {
+    input, select, textarea { font-size: 16px; }
+  }
+
+  /* Coarse pointers need 44px targets (WCAG 2.5.5 / Apple HIG). */
+  @media (pointer: coarse) {
+    button, [role="button"], a.chip, input[type="checkbox"], input[type="radio"] {
+      min-height: 44px;
+    }
+    input[type="checkbox"], input[type="radio"] { min-width: 22px; }
+  }
+
+  /* Windows Phone / narrow viewport escape hatch. */
+  @media (max-width: 320px) {
+    html { font-size: 15px; }
+  }
+}
+
+/* ------------------------------------------------------------------
+   .shell - one page gutter that scales with the device, replacing the
+   hand-stacked "max-w-7xl px-4 sm:px-6 lg:px-8" triplets.
+------------------------------------------------------------------- */
+.shell {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 100%;
+  padding-inline: 0.875rem;
+}
+@media (min-width: 375px) { .shell { padding-inline: 1rem; } }
+@media (min-width: 430px) { .shell { padding-inline: 1.25rem; } }
+@media (min-width: 768px) { .shell { padding-inline: 1.5rem; max-width: 48rem; } }
+@media (min-width: 1024px) { .shell { padding-inline: 2rem; max-width: 64rem; } }
+@media (min-width: 1280px) { .shell { padding-inline: 2rem; max-width: 80rem; } }
+@media (min-width: 1440px) { .shell { padding-inline: 2.5rem; max-width: 88rem; } }
+@media (min-width: 1920px) { .shell { padding-inline: 3rem; max-width: 108rem; } }
+
+/* Same gutter, no width ceiling - full-bleed editorial bands. */
+.shell-fluid {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: 0.875rem;
+}
+@media (min-width: 375px) { .shell-fluid { padding-inline: 1rem; } }
+@media (min-width: 430px) { .shell-fluid { padding-inline: 1.25rem; } }
+@media (min-width: 768px) { .shell-fluid { padding-inline: 1.5rem; } }
+@media (min-width: 1024px) { .shell-fluid { padding-inline: 2rem; } }
+@media (min-width: 1440px) { .shell-fluid { padding-inline: 2.5rem; } }
+@media (min-width: 1920px) { .shell-fluid { padding-inline: 3rem; max-width: 108rem; } }
+
+/* Notch / home-bar safe areas for fixed and sticky chrome. */
+.pt-safe { padding-top: env(safe-area-inset-top, 0px); }
+.pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); }
+.mt-safe { margin-top: env(safe-area-inset-top, 0px); }
+.mb-safe { margin-bottom: env(safe-area-inset-bottom, 0px); }
+
+/* Fluid display type: one rule instead of 5 breakpoint steps. */
+.fluid-title {
+  font-size: clamp(1.75rem, 1.05rem + 3.1vw, 3.25rem);
+  line-height: 1.06;
+  text-wrap: balance;
+}
+.fluid-lede {
+  font-size: clamp(0.9375rem, 0.86rem + 0.22vw, 1.125rem);
+  text-wrap: pretty;
+}
+
+/* Horizontal scrollers (chips, tables) instead of overflow at 320px. */
+.snap-rail {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.snap-rail::-webkit-scrollbar { display: none; }
+.snap-rail > * { scroll-snap-align: start; flex-shrink: 0; }
+
+/* Edge fade so a scrolled rail reads as scrollable on touch devices. */
+.rail-fade {
+  mask-image: linear-gradient(to right, transparent, #000 14px, #000 calc(100% - 14px), transparent);
+}
+
+/* Long-press / double-tap zoom guards for product grids. */
+.tap-stable { touch-action: manipulation; }
+
+/* Modals: full-bleed sheet on phones, framed panel from 430px up. */
+.sheet-frame {
+  border-radius: 0;
+  max-height: 100dvh;
+  height: 100dvh;
+}
+@media (min-width: 430px) {
+  .sheet-frame {
+    border-radius: 20px;
+    height: auto;
+    max-height: min(88dvh, 56rem);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+}

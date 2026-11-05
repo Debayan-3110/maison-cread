@@ -48,6 +48,9 @@ export const ShopProvider = ({ children }: { children: ReactNode }) => {
   const [categories, setCategories] = useState<string[]>(['all']);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [totalCount, setTotalCount] = useState<number>(0);
+  const [hasMore, setHasMore] = useState<boolean>(false);
+  const [loadingMore, setLoadingMore] = useState<boolean>(false);
 
   // Filters state
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
@@ -185,11 +188,13 @@ export const ShopProvider = ({ children }: { children: ReactNode }) => {
       try {
         const [catData, prodData] = await Promise.all([
           fetchCategories(),
-          fetchProducts({ limit: 100 })
+          fetchProducts({ limit: 24 })
         ]);
         setCategories(catData);
         setAllProducts(prodData.products || []);
         setProducts(prodData.products || []);
+        setTotalCount(prodData.total || (prodData.products ? prodData.products.length : 0));
+        setHasMore(Boolean(prodData.hasMore));
         if (isOnline) {
           await loadCurrentUser();
           await refreshDevEmails();
@@ -210,12 +215,15 @@ export const ShopProvider = ({ children }: { children: ReactNode }) => {
       setLoading(true);
       try {
         const data = await fetchProducts({
-          limit: 100,
+          limit: 24,
           category: selectedCategory,
           search: searchQuery,
-          maxPrice: maxPriceFilter
+          maxPrice: maxPriceFilter,
+          sortBy: sortBy
         });
         setProducts(data.products || []);
+        setTotalCount(data.total || (data.products ? data.products.length : 0));
+        setHasMore(Boolean(data.hasMore));
       } catch (err) {
         console.error('Error updating filtered products:', err);
       } finally {
@@ -224,7 +232,29 @@ export const ShopProvider = ({ children }: { children: ReactNode }) => {
     };
     const timer = setTimeout(filterProducts, 300);
     return () => clearTimeout(timer);
-  }, [selectedCategory, searchQuery, maxPriceFilter]);
+  }, [selectedCategory, searchQuery, maxPriceFilter, sortBy]);
+
+  const loadMore = useCallback(async () => {
+    if (loadingMore || !hasMore) return;
+    setLoadingMore(true);
+    try {
+      const data = await fetchProducts({
+        limit: 24,
+        skip: products.length,
+        category: selectedCategory,
+        search: searchQuery,
+        maxPrice: maxPriceFilter,
+        sortBy: sortBy
+      });
+      const newItems = data.products || [];
+      setProducts((prev) => [...prev, ...newItems]);
+      setHasMore(Boolean(data.hasMore));
+    } catch (err) {
+      console.error('Failed to load more products:', err);
+    } finally {
+      setLoadingMore(false);
+    }
+  }, [loadingMore, hasMore, products.length, selectedCategory, searchQuery, maxPriceFilter, sortBy]);
 
   const toggleTheme = () => {
     setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
@@ -533,6 +563,10 @@ export const ShopProvider = ({ children }: { children: ReactNode }) => {
     categories,
     loading,
     error,
+    totalCount,
+    hasMore,
+    loadMore,
+    loadingMore,
     selectedCategory,
     setSelectedCategory,
     searchQuery,

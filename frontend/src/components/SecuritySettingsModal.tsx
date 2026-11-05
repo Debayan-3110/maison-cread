@@ -36,8 +36,8 @@ export default function SecuritySettingsModal() {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-scrim backdrop-blur-[3px] backdrop-in">
-      <div className="relative w-full max-w-lg bg-canvas border border-hairline rounded-[20px] p-6 sm:p-8 shadow-scrim backdrop-blur-xl text-body max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-stretch justify-center overflow-y-auto bg-scrim backdrop-blur-[3px] backdrop-in phone-xl:items-center phone-xl:p-4 sm:p-6">
+      <div className="thin-scroll relative max-h-dvh w-full max-w-lg overflow-y-auto border border-hairline bg-canvas p-4 text-body shadow-scrim backdrop-blur-xl phone-xl:max-h-[90dvh] phone-xl:rounded-[20px] phone-xl:p-6 sm:p-8">
 
         <div className="flex items-center justify-between pb-6 border-b border-hairline">
           <div className="flex items-center gap-3">

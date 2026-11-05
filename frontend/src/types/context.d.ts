@@ -19,6 +19,10 @@ export interface ShopContextType {
     categories: string[];
     loading: boolean;
     error: string | null;
+    totalCount?: number;
+    hasMore?: boolean;
+    loadMore?: () => Promise<void>;
+    loadingMore?: boolean;
     
     // Filters
     selectedCategory: string;

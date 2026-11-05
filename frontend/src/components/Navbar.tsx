@@ -13,6 +13,7 @@ import {
   ShieldCheck,
   Inbox,
   X,
+  User,
 } from 'lucide-react';
 
 const statusTone: Record<string, string> = {
@@ -80,12 +81,12 @@ export default function Navbar() {
     backendStatus === 'online' ? 'Atelier online' : backendStatus === 'checking' ? 'Connecting' : 'Offline mode';
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-hairline bg-canvas/90 backdrop-blur-xl">
+    <header className="sticky top-0 z-40 w-full border-b border-hairline bg-canvas/90 pt-safe backdrop-blur-xl">
       <div className="bg-solid text-on-solid">
-        <div className="mx-auto flex h-8 max-w-7xl items-center justify-between px-4 text-[10px] font-medium uppercase tracking-[0.2em] sm:px-6 lg:px-8">
-          <span className="hidden items-center gap-2 sm:flex">
-            <Sparkles className="h-3 w-3 opacity-70" strokeWidth={1.5} />
-            Insured delivery over 1,999
+        <div className="shell flex h-7 items-center justify-between gap-2 text-[9px] font-medium uppercase tracking-[0.16em] xs:text-[10px] xs:tracking-[0.2em] sm:h-8">
+          <span className="hidden items-center gap-2 truncate xs:flex">
+            <Sparkles className="h-3 w-3 shrink-0 opacity-70" strokeWidth={1.5} />
+            <span className="truncate">Insured delivery over 1,999</span>
           </span>
           <span className="flex items-center gap-2">
             <span className={`h-1.5 w-1.5 rounded-full ${statusTone[backendStatus] || statusTone.offline}`} />
@@ -95,17 +96,17 @@ export default function Navbar() {
         </div>
       </div>
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-[74px] items-center justify-between gap-6">
+      <div className="shell">
+        <div className="flex h-[58px] items-center justify-between gap-2 phone-lg:h-[64px] sm:h-[74px] sm:gap-4 lg:gap-6">
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="shrink-0 text-left"
+            className="min-w-0 shrink-0 text-left"
             aria-label="Maison Cread home"
           >
-            <span className="font-display text-[21px] leading-none tracking-tight text-body sm:text-[23px]">
+            <span className="block truncate font-display text-[19px] leading-none tracking-tight text-body xs:text-[20px] sm:text-[23px]">
               Maison Cread
             </span>
-            <span className="mt-1 hidden text-[9px] font-medium uppercase tracking-[0.32em] text-faint sm:block">
+            <span className="mt-1 hidden text-[9px] font-medium uppercase tracking-[0.32em] text-faint phone-xl:block sm:block">
               Objects of desire
             </span>
           </button>
@@ -146,7 +147,7 @@ export default function Navbar() {
                 onFocus={() => setIsSearchFocused(true)}
                 placeholder="Search the maison"
                 aria-label="Search products"
-                className="h-10 w-44 rounded-full border border-hairline bg-panel pl-9 pr-8 text-[12.5px] text-body outline-none transition-all duration-300 placeholder:text-faint focus:w-64 focus:border-body/40 xl:w-56"
+                className="h-10 w-40 rounded-full border border-hairline bg-panel pl-9 pr-8 text-[12.5px] text-body outline-none transition-all duration-300 placeholder:text-faint focus:w-56 focus:border-body/40 sm:w-44 lg:w-48 xl:w-56 3xl:w-72"
               />
               {searchQuery && (
                 <button
@@ -159,7 +160,7 @@ export default function Navbar() {
               )}
 
               {isSearchFocused && searchQuery.trim() !== '' && (
-                <div className="card-premium menu-in absolute left-0 top-full z-50 mt-3 w-[340px] overflow-hidden p-2">
+                <div className="card-premium menu-in absolute left-0 top-full z-50 mt-3 w-[calc(100vw-1.75rem)] overflow-hidden p-2 sm:w-[340px]">
                   {suggestions.length > 0 ? (
                     <div className="space-y-1">
                       <p className="eyebrow px-3 pb-1 pt-2">{suggestions.length} matches</p>
@@ -231,19 +232,19 @@ export default function Navbar() {
               <div ref={userMenuRef} className="relative pl-1">
                 <button
                   onClick={() => setShowUserMenu(!showUserMenu)}
-                  className="flex items-center gap-2 rounded-full border border-hairline bg-panel py-1 pl-1 pr-3 hover:border-quiet"
+                  className="flex items-center gap-2 rounded-full border border-hairline bg-panel py-1 pl-1 pr-1 hover:border-quiet phone-xl:pr-3 sm:pr-3"
                 >
                   <span className="flex h-7 w-7 items-center justify-center rounded-full bg-solid text-[11px] font-semibold text-on-solid">
                     {user?.name?.charAt(0).toUpperCase()}
                   </span>
                   <ChevronDown
-                    className={`h-3.5 w-3.5 text-quiet transition-transform duration-200 ${showUserMenu ? 'rotate-180' : ''}`}
+                    className={`hidden h-3.5 w-3.5 text-quiet transition-transform duration-200 phone-xl:block ${showUserMenu ? 'rotate-180' : ''}`}
                     strokeWidth={1.5}
                   />
                 </button>
 
                 {showUserMenu && (
-                  <div className="card-premium menu-in absolute right-0 z-50 mt-3 w-60 overflow-hidden py-1.5">
+                  <div className="card-premium menu-in absolute right-0 z-50 mt-3 w-[min(15rem,calc(100vw-2rem))] overflow-hidden py-1.5">
                     <div className="border-b border-hairline px-4 py-3">
                       <p className="truncate text-[13px] font-medium text-body">{user?.name}</p>
                       <p className="mt-0.5 truncate text-[11px] text-quiet">{user?.email}</p>
@@ -282,12 +283,21 @@ export default function Navbar() {
                 )}
               </div>
             ) : (
-              <button
-                onClick={() => openAuthModal()}
-                className="btn-solid ml-1 hidden px-5 py-2.5 text-[11.5px] uppercase tracking-[0.14em] sm:inline-flex"
-              >
-                Sign in
-              </button>
+              <>
+                <button
+                  onClick={() => openAuthModal()}
+                  aria-label="Sign in"
+                  className="btn-ghost h-10 w-10 rounded-full p-0 phone-xl:hidden"
+                >
+                  <User className="h-[18px] w-[18px]" strokeWidth={1.5} />
+                </button>
+                <button
+                  onClick={() => openAuthModal()}
+                  className="btn-solid ml-1 hidden px-5 py-2.5 text-[11.5px] uppercase tracking-[0.14em] phone-xl:inline-flex"
+                >
+                  Sign in
+                </button>
+              </>
             )}
           </div>
         </div>
@@ -304,7 +314,7 @@ export default function Navbar() {
               className="h-11 w-full rounded-full border border-hairline bg-panel pl-9 pr-4 text-[13px] text-body outline-none placeholder:text-faint focus:border-body/40"
             />
           </div>
-          <div className="scrollbar-none -mx-4 mt-3 flex gap-2 overflow-x-auto px-4">
+          <div className="snap-rail rail-fade -mx-[.875rem] mt-3 px-[.875rem] sm:-mx-6 sm:px-6">
             {categories.map((cat: string) => (
               <button
                 key={cat}

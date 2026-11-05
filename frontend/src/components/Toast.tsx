@@ -13,13 +13,13 @@ interface ToastProps {
 
 function ToastItem({ toast, onRemove }: ToastProps) {
   return (
-    <div className="flex items-start justify-between gap-4 rounded-[14px] border border-hairline bg-panel px-4 py-3.5 shadow-quiet toast-in min-w-[300px]">
-      <div className="flex items-start gap-3">
+    <div className="pointer-events-auto flex items-start justify-between gap-3 rounded-[14px] border border-hairline bg-panel px-4 py-3.5 shadow-quiet toast-in sm:gap-4">
+      <div className="flex min-w-0 items-start gap-3">
         <span className={`mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full ${
           toast.type === 'success' ? 'bg-success' :
           toast.type === 'error' ? 'bg-[#9B3B22]' : 'bg-accent'
         }`} />
-        <p className="text-[13px] leading-relaxed text-body">{toast.message}</p>
+        <p className="min-w-0 break-words text-[13px] leading-relaxed text-body">{toast.message}</p>
       </div>
       <button
         onClick={() => onRemove(toast.id)}
@@ -38,7 +38,7 @@ export default function Toast() {
   if (toasts.length === 0) return null;
 
   return (
-    <div className="fixed right-4 top-4 z-[100] flex max-w-sm flex-col gap-3">
+    <div className="pointer-events-none fixed inset-x-0 top-4 z-[100] flex flex-col items-stretch gap-2 px-3 phone-lg:gap-3 sm:inset-x-auto sm:right-4 sm:top-4 sm:w-80">
       {toasts.map((toast) => (
         <ToastItem key={toast.id} toast={toast} onRemove={removeToast} />
       ))}

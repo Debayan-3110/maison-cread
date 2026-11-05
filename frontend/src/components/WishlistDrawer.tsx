@@ -20,12 +20,12 @@ export default function WishlistDrawer() {
     <div className="fixed inset-0 z-50 overflow-hidden">
       <div className="backdrop-in fixed inset-0 bg-scrim backdrop-blur-[2px]" onClick={() => setIsWishlistOpen(false)} />
 
-      <div className="fixed inset-y-0 right-0 flex max-w-full pl-10">
-        <aside className="drawer-in flex w-screen max-w-md flex-col justify-between border-l border-hairline bg-canvas text-left shadow-scrim">
-          <header className="flex items-start justify-between gap-4 border-b border-hairline p-6">
-            <div>
+      <div className="fixed inset-y-0 right-0 flex max-w-full pl-4 phone-lg:pl-10">
+        <aside className="drawer-in flex w-screen max-w-full flex-col justify-between border-l border-hairline bg-canvas text-left shadow-scrim sm:max-w-md">
+          <header className="flex items-start justify-between gap-3 border-b border-hairline p-4 pt-[max(1rem,env(safe-area-inset-top))] phone-lg:gap-4 phone-lg:p-6">
+            <div className="min-w-0">
               <p className="eyebrow">Saved for later</p>
-              <h2 className="title-editorial mt-2 text-[26px]">The wishlist</h2>
+              <h2 className="title-editorial mt-2 text-[22px] phone-lg:text-[26px]">The wishlist</h2>
               <p className="mt-1 text-[12px] text-quiet">
                 {wishlist.length} {wishlist.length === 1 ? 'piece' : 'pieces'}
               </p>
@@ -39,7 +39,7 @@ export default function WishlistDrawer() {
             </button>
           </header>
 
-          <div className="thin-scroll flex-1 overflow-y-auto p-6">
+          <div className="thin-scroll flex-1 overflow-y-auto p-4 phone-lg:p-6">
             {wishlist.length === 0 ? (
               <div className="flex h-full flex-col items-center justify-center py-12 text-center">
                 <div className="flex h-16 w-16 items-center justify-center rounded-full border border-hairline">

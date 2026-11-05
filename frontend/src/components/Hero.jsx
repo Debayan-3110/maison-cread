@@ -34,38 +34,38 @@ export default function Hero() {
 
   return (
     <section className="relative overflow-hidden">
-      <div className="mx-auto max-w-7xl px-4 pt-14 pb-10 sm:px-6 sm:pt-20 lg:px-8">
-        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
+      <div className="shell pb-8 pt-9 phone-lg:pb-10 phone-lg:pt-12 sm:pt-16 lg:pt-20">
+        <div className="grid grid-cols-1 items-center gap-8 phone-lg:gap-10 lg:grid-cols-12 lg:gap-x-16 lg:gap-y-12">
           {/* Editorial copy */}
-          <div className="lg:col-span-7">
-            <div className="flex items-center gap-4">
-              <span className="h-px w-10 bg-accent" />
+          <div className="min-w-0 lg:col-span-7">
+            <div className="flex items-center gap-3 phone-lg:gap-4">
+              <span className="h-px w-6 phone-lg:w-10 bg-accent" />
               <p className="eyebrow">Autumn Edit 2026</p>
             </div>
 
-            <h1 className="title-editorial mt-7 text-[44px] sm:text-[62px] lg:text-[70px] text-balance">
+            <h1 className="title-editorial mt-5 text-[32px] phone:text-[36px] phone-lg:mt-7 phone-lg:text-[40px] phone-xl:text-[44px] sm:text-[62px] lg:text-[70px] text-balance 3xl:text-[76px]">
               Considered objects for a life well <em className="font-display italic text-accent">equipped</em>.
             </h1>
 
-            <p className="mt-7 max-w-xl text-[15px] leading-[1.75] text-quiet sm:text-[16px]">
+            <p className="fluid-lede mt-5 max-w-xl text-[14px] leading-[1.75] text-quiet phone-lg:mt-7 phone-lg:text-[15px] sm:text-[16px]">
               A tightly edited selection of instruments, timepieces and everyday essentials —
               each one authenticated, insured in transit and backed by our house guarantee.
             </p>
 
-            <div className="mt-10 flex flex-wrap items-center gap-3">
-              <button onClick={goToCatalog} className="btn-solid group uppercase tracking-[0.14em]">
+            <div className="mt-6 flex flex-wrap items-center gap-2.5 phone-lg:mt-10 phone-lg:gap-3">
+              <button onClick={goToCatalog} className="btn-solid group w-full justify-center uppercase tracking-[0.14em] phone-xl:w-auto">
                 Shop the collection
                 <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" strokeWidth={1.5} />
               </button>
               <button
                 onClick={() => { setSelectedCategory('smartphones'); goToCatalog(); }}
-                className="btn-line uppercase tracking-[0.14em]"
+                className="btn-line w-full justify-center uppercase tracking-[0.14em] phone-xl:w-auto"
               >
                 The phone edit
               </button>
             </div>
 
-            <dl className="mt-14 grid grid-cols-2 gap-x-8 gap-y-7 border-t border-hairline pt-8 sm:grid-cols-4">
+            <dl className="mt-9 grid grid-cols-2 gap-x-5 gap-y-5 border-t border-hairline pt-6 phone-lg:mt-14 phone-lg:gap-x-6 phone-lg:gap-y-7 phone-lg:pt-8 phone-xl:grid-cols-4 sm:grid-cols-4 sm:gap-x-8">
               {[
                 ['Authentication', 'Every piece verified in-house'],
                 ['Delivery', 'Insured, signature on arrival'],
@@ -83,7 +83,7 @@ export default function Hero() {
           {/* Featured plate */}
           <div className="lg:col-span-5">
             <div className="relative">
-              <div className="frame-still relative aspect-[4/5] w-full p-8 sm:p-10">
+              <div className="frame-still relative aspect-[4/5] w-full p-5 phone-lg:p-8 sm:p-10">
                 <div className="texture-lines absolute inset-0 opacity-60" />
                 {featured ? (
                   <button
@@ -106,7 +106,7 @@ export default function Hero() {
                 )}
               </div>
 
-              <div className="card-premium mt-5 flex items-end justify-between gap-5 p-5">
+              <div className="card-premium mt-4 flex items-end justify-between gap-3 p-4 phone-lg:mt-5 phone-lg:gap-5 phone-lg:p-5">
                 <div className="min-w-0">
                   <p className="eyebrow">Private sale</p>
                   <p className="mt-2 truncate text-[14px] text-body">{featured ? featured.title : 'Selecting this week’s piece'}</p>

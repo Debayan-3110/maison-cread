@@ -35,10 +35,10 @@ function ModalContent({ product, setQuickViewProduct }) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto p-4 sm:p-6">
+    <div className="fixed inset-0 z-50 flex items-stretch justify-center overflow-y-auto phone-xl:items-center phone-xl:p-6">
       <div className="backdrop-in fixed inset-0 bg-scrim backdrop-blur-[3px]" onClick={() => setQuickViewProduct(null)} />
 
-      <div className="card-premium modal-in relative z-10 my-8 flex max-h-[90vh] w-full max-w-5xl flex-col overflow-hidden">
+      <div className="card-premium modal-in relative z-10 flex h-full max-h-none w-full flex-col overflow-hidden rounded-none phone-xl:h-auto phone-xl:max-h-[90vh] phone-xl:rounded-[16px] phone-xl:my-8 max-w-5xl">
         <button
           onClick={() => setQuickViewProduct(null)}
           aria-label="Close quick view"
@@ -47,11 +47,11 @@ function ModalContent({ product, setQuickViewProduct }) {
           <X className="h-[18px] w-[18px]" strokeWidth={1.5} />
         </button>
 
-        <div className="thin-scroll overflow-y-auto">
-          <div className="grid grid-cols-1 gap-8 p-6 sm:p-8 md:grid-cols-2 md:gap-12">
+        <div className="thin-scroll flex-1 overflow-y-auto">
+          <div className="grid grid-cols-1 gap-5 p-4 pt-14 phone-lg:p-6 phone-lg:pt-14 sm:p-8 md:grid-cols-2 md:gap-8 lg:gap-12">
             {/* Gallery */}
             <div className="space-y-3">
-              <div className="frame-still relative flex h-72 items-center justify-center p-6 sm:h-96">
+              <div className="frame-still relative flex h-56 items-center justify-center p-4 phone-lg:h-72 phone-lg:p-6 sm:h-96 3xl:h-[32rem]">
                 <div className="texture-lines absolute inset-0 opacity-50" />
                 <img
                   src={selectedImage}

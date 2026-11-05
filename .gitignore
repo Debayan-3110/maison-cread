@@ -11,6 +11,35 @@ node_modules
 dist
 dist-ssr
 *.local
+*.bak
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+ENV/
+build/
+develop-eggs/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Keep legacy bytecode required for runtime
+!legacy/pyc/*.pyc
 
 # Editor directories and files
 .vscode/*

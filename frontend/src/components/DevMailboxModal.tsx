@@ -25,8 +25,8 @@ export default function DevMailboxModal() {
   if (!isDevMailboxOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-scrim backdrop-blur-[3px] backdrop-in">
-      <div className="relative w-full max-w-2xl bg-canvas border border-hairline rounded-[20px] p-6 sm:p-8 shadow-scrim backdrop-blur-xl text-body max-h-[85vh] flex flex-col">
+    <div className="fixed inset-0 z-50 flex items-stretch justify-center overflow-y-auto bg-scrim backdrop-blur-[3px] backdrop-in phone-xl:items-center phone-xl:p-4 sm:p-6">
+      <div className="relative flex max-h-dvh w-full max-w-2xl flex-col border border-hairline bg-canvas p-4 text-body shadow-scrim backdrop-blur-xl phone-xl:max-h-[88dvh] phone-xl:rounded-[20px] phone-xl:p-6 sm:p-8">
         <div className="flex items-center justify-between pb-4 border-b border-hairline shrink-0">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-2xl bg-accent-soft border border-hairline flex items-center justify-center text-accent">

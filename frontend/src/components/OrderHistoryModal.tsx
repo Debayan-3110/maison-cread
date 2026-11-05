@@ -37,11 +37,11 @@ export default function OrderHistoryModal() {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-scrim backdrop-blur-[3px] backdrop-in">
-      <div className="relative w-full max-w-4xl bg-canvas border border-hairline rounded-[20px] p-6 sm:p-8 shadow-scrim backdrop-blur-xl text-body max-h-[85vh] flex gap-6 overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-stretch justify-center bg-scrim backdrop-blur-[3px] backdrop-in phone-xl:items-center phone-xl:p-4 sm:p-6">
+      <div className="relative flex max-h-dvh w-full max-w-4xl flex-col gap-4 overflow-hidden border-hairline bg-canvas p-4 text-body shadow-scrim backdrop-blur-xl phone-xl:max-h-[88dvh] phone-xl:flex-row phone-xl:gap-6 phone-xl:rounded-[20px] phone-xl:p-6 sm:p-8 border">
 
         {/* Left: Order List */}
-        <div className={`flex-1 flex flex-col transition-all duration-300 ${selectedOrderId ? 'max-w-sm' : 'w-full'}`}>
+        <div className={`flex-1 flex-col transition-all duration-300 ${selectedOrderId ? 'hidden lg:flex lg:max-w-sm' : 'flex w-full'}`}>
           <div className="flex items-center justify-between pb-6 border-b border-hairline shrink-0 mb-4">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-2xl bg-accent-soft border border-hairline flex items-center justify-center text-accent">
@@ -87,9 +87,15 @@ export default function OrderHistoryModal() {
 
         {/* Right: Order Details & Timeline */}
         {selectedOrder && (
-          <div className="flex-1 bg-recess rounded-[20px] p-6 border border-hairline menu-in">
+          <div className="thin-scroll menu-in flex-1 overflow-y-auto rounded-[20px] border border-hairline bg-recess p-4 phone-lg:p-6 phone-xl:rounded-[20px]">
             <div className="flex justify-between items-start mb-6">
-              <div>
+              <div className="min-w-0">
+                <button
+                  onClick={() => setSelectedOrderId(null)}
+                  className="mb-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-quiet lg:hidden"
+                >
+                  ← All orders
+                </button>
                 <h4 className="text-xl font-bold text-body">Order Details</h4>
                 <p className="text-xs text-quiet">Shipment ID: {selectedOrder.id}</p>
               </div>
@@ -99,7 +105,7 @@ export default function OrderHistoryModal() {
             </div>
 
             <div className="space-y-6">
-              <div className="grid grid-cols-2 gap-4 text-xs">
+              <div className="grid grid-cols-1 gap-3 text-xs phone-lg:grid-cols-2 phone-lg:gap-4">
                 <div className="p-3 rounded-xl bg-recess border border-hairline">
                   <span className="text-faint block mb-1">Delivery Address</span>
                   <span className="text-body font-medium">{selectedOrder.shippingInfo.address}, {selectedOrder.shippingInfo.city}</span>

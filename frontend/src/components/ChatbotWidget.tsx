@@ -72,7 +72,7 @@ const ChatbotWidget: React.FC = () => {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 font-sans">
+    <div className="pointer-events-none fixed bottom-0 left-0 right-0 z-50 flex flex-col items-stretch px-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] phone-xl:bottom-6 phone-xl:right-6 phone-xl:left-auto phone-xl:items-end phone-xl:px-0 phone-xl:pb-0">
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -80,7 +80,7 @@ const ChatbotWidget: React.FC = () => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
             transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-            className="mb-4 w-80 sm:w-96 h-[500px] card-premium shadow-scrim flex flex-col overflow-hidden border border-hairline"
+            className="pointer-events-auto mb-3 flex h-[min(58dvh,400px)] w-full max-w-full flex-col overflow-hidden border border-hairline card-premium shadow-scrim phone-lg:h-[min(68dvh,480px)] phone-xl:mb-4 phone-xl:w-80 sm:h-[500px] sm:w-96"
           >
             {/* Header */}
             <div className="p-4 bg-solid text-on-solid flex justify-between items-center shadow-quiet">
@@ -174,7 +174,7 @@ const ChatbotWidget: React.FC = () => {
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         onClick={() => setIsOpen(!isOpen)}
-        className="w-14 h-14 bg-solid text-on-solid rounded-full shadow-scrim flex items-center justify-center hover:opacity-90 transition-colors"
+            className="pointer-events-auto self-end flex h-14 w-14 items-center justify-center rounded-full bg-solid text-on-solid shadow-scrim transition-colors hover:opacity-90 phone-xl:self-auto"
       >
         {isOpen ? <X size={24} /> : <MessageCircle size={24} />}
       </motion.button>

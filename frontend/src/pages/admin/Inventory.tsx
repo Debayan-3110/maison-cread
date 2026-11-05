@@ -34,19 +34,19 @@ const InventoryManager: React.FC = () => {
   };
 
   return (
-    <div className="p-6 space-y-6 fade-up">
-      <div className="flex justify-between items-center">
-        <div>
-          <h1 className="text-3xl font-semibold text-body tracking-tight">Inventory Management</h1>
-          <p className="text-sm text-quiet">Manage product availability and SKU tracking</p>
+    <div className="shell fade-up py-6 space-y-5 phone-lg:space-y-6">
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div className="min-w-0">
+          <h1 className="text-[22px] font-semibold text-body tracking-tight phone-lg:text-[26px] 3xl:text-3xl">Inventory Management</h1>
+          <p className="text-[13px] text-quiet">Manage product availability and SKU tracking</p>
         </div>
-        <div className="px-4 py-2 bg-accent-soft text-accent rounded-full text-sm font-bold border border-hairline">
+        <div className="shrink-0 px-3 py-1.5 phone-lg:px-4 phone-lg:py-2 bg-accent-soft text-accent rounded-full text-[11px] phone-lg:text-sm font-bold border border-hairline">
           Admin Access
         </div>
       </div>
 
-      <div className="overflow-hidden rounded-[20px] border border-hairline bg-panel backdrop-blur-xl shadow-quiet">
-        <table className="w-full text-left border-collapse">
+      <div className="thin-scroll overflow-x-auto rounded-[20px] border border-hairline bg-panel backdrop-blur-xl shadow-quiet">
+        <table className="w-full min-w-[34rem] text-left border-collapse">
           <thead>
             <tr className="bg-recess text-quiet text-xs uppercase tracking-widest">
               <th className="p-4 font-bold">Product</th>

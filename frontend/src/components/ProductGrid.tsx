@@ -43,6 +43,10 @@ export default function ProductGrid() {
     setSortBy,
     maxPriceFilter,
     setMaxPriceFilter,
+    totalCount = 0,
+    hasMore = false,
+    loadMore,
+    loadingMore = false,
   } = useShop();
 
   const [layoutMode, setLayoutMode] = useState<'grid' | 'list'>('grid');
@@ -55,18 +59,18 @@ export default function ProductGrid() {
   };
 
   return (
-    <section id="catalog-section" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+    <section id="catalog-section" className="shell py-10 phone-lg:py-12 sm:py-16 3xl:py-20">
       {/* Section heading */}
-      <div className="flex flex-col gap-6 border-b border-hairline pb-8 md:flex-row md:items-end md:justify-between">
-        <div>
-          <div className="flex items-center gap-4">
-            <span className="h-px w-10 bg-accent" />
+      <div className="flex flex-col gap-4 border-b border-hairline pb-6 phone-lg:gap-6 phone-lg:pb-8 md:flex-row md:items-end md:justify-between">
+        <div className="min-w-0">
+          <div className="flex items-center gap-3 phone-lg:gap-4">
+            <span className="h-px w-6 phone-lg:w-10 bg-accent" />
             <p className="eyebrow">The catalogue</p>
           </div>
-          <h2 className="title-editorial mt-4 text-[34px] sm:text-[42px]">
+          <h2 className="title-editorial mt-3 text-[28px] phone-lg:mt-4 phone-lg:text-[32px] sm:text-[42px] 3xl:text-[46px]">
             <span className="capitalize">{selectedCategory.replace('-', ' ')}</span>
-            <span className="ml-3 align-middle text-[13px] font-sans tracking-[0.18em] text-faint">
-              {String(products.length).padStart(2, '0')} PIECES
+            <span className="ml-2 phone-lg:ml-3 align-middle text-[11px] font-sans tracking-[0.18em] text-faint sm:text-[13px]">
+              {totalCount > 0 ? `${products.length} OF ${totalCount.toLocaleString()} PIECES` : `${String(products.length).padStart(2, '0')} PIECES`}
             </span>
           </h2>
           {searchQuery && (
@@ -119,7 +123,7 @@ export default function ProductGrid() {
 
       {/* Refine panel */}
       {showFilters && (
-        <div className="card-premium menu-in mt-6 grid grid-cols-1 gap-6 p-6 md:grid-cols-2">
+        <div className="card-premium menu-in mt-4 grid grid-cols-1 gap-4 p-4 phone-lg:mt-6 phone-lg:gap-6 phone-lg:p-6 md:grid-cols-2">
           <div>
             <div className="flex items-center justify-between">
               <p className="eyebrow">Budget ceiling</p>
@@ -164,7 +168,7 @@ export default function ProductGrid() {
 
       {/* Error */}
       {error && (
-        <div className="mt-10 rounded-[16px] border border-[#9B3B22]/25 bg-[#9B3B22]/8 p-8 text-center">
+        <div className="mt-6 rounded-[16px] border border-[#9B3B22]/25 bg-[#9B3B22]/8 p-5 phone-lg:mt-10 phone-lg:p-8 text-center">
           <p className="text-[14px] text-[#9B3B22]">{error}</p>
           <button onClick={() => window.location.reload()} className="btn-line mt-5">
             Retry
@@ -174,9 +178,9 @@ export default function ProductGrid() {
 
       {/* Skeletons */}
       {loading && (
-        <div className={layoutMode === 'grid' ? 'mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4' : 'mt-10 space-y-4'}>
+        <div className={layoutMode === 'grid' ? 'mt-5 grid grid-cols-1 gap-3 phone-lg:mt-8 phone-lg:grid-cols-2 phone-lg:gap-4 md:mt-10 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 4xl:grid-cols-5' : 'mt-5 space-y-4 phone-lg:mt-8'}>
           {Array.from({ length: 8 }).map((_, idx) => (
-            <div key={idx} className="card-premium flex h-[22rem] flex-col gap-4 p-3">
+            <div key={idx} className="card-premium flex h-[20rem] phone-lg:h-[22rem] flex-col gap-4 p-3">
               <div className="skeleton h-52 w-full" />
               <div className="skeleton h-3 w-1/3" />
               <div className="skeleton h-4 w-3/4" />
@@ -188,7 +192,7 @@ export default function ProductGrid() {
 
       {/* Empty */}
       {!loading && products.length === 0 && (
-        <div className="card-premium mx-auto mt-14 max-w-md p-12 text-center">
+        <div className="card-premium mx-auto mt-8 max-w-md p-6 phone-lg:mt-14 phone-lg:p-12 text-center">
           <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full border border-hairline">
             <SearchX className="h-6 w-6 text-accent" strokeWidth={1.5} />
           </div>
@@ -210,8 +214,8 @@ export default function ProductGrid() {
           animate="visible"
           className={
             layoutMode === 'grid'
-              ? 'mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
-              : 'mt-10 space-y-4'
+              ? 'mt-5 grid grid-cols-1 gap-3 phone-lg:mt-8 phone-lg:grid-cols-2 phone-lg:gap-4 md:mt-10 md:grid-cols-2 md:gap-5 lg:grid-cols-3 xl:grid-cols-4 4xl:grid-cols-5'
+              : 'mt-5 space-y-4 phone-lg:mt-8'
           }
         >
           {products.map((product) => (
@@ -220,6 +224,26 @@ export default function ProductGrid() {
             </motion.div>
           ))}
         </motion.div>
+      )}
+
+      {/* Pagination Load More */}
+      {!loading && hasMore && loadMore && (
+        <div className="mt-12 flex justify-center pb-6">
+          <button
+            onClick={loadMore}
+            disabled={loadingMore}
+            className="btn-solid flex items-center gap-2.5 px-8 py-3.5 text-[11px] font-semibold uppercase tracking-[0.18em] shadow-lg hover:opacity-95 transition-all"
+          >
+            {loadingMore ? (
+              <>
+                <span className="inline-block h-3.5 w-3.5 animate-spin rounded-full border-2 border-current border-t-transparent" />
+                <span>Loading more pieces...</span>
+              </>
+            ) : (
+              <span>Discover more pieces ({products.length} of {totalCount.toLocaleString()})</span>
+            )}
+          </button>
+        </div>
       )}
     </section>
   );
