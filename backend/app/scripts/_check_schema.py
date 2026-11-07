@@ -6,3 +6,4 @@ print()
 # Also show column names
 for row in conn.execute("PRAGMA table_info(products)").fetchall():
     print(row)
+

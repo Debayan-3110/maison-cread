@@ -6,3 +6,4 @@ for c in cats:
 print("Total:", conn.execute("SELECT COUNT(*) FROM products").fetchone()[0])
 print("Active:", conn.execute("SELECT COUNT(*) FROM products WHERE status='active'").fetchone()[0])
 print("Null status:", conn.execute("SELECT COUNT(*) FROM products WHERE status IS NULL").fetchone()[0])
+
