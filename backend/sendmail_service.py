@@ -42,6 +42,9 @@ SMTP_USE_SSL = os.getenv("SMTP_USE_SSL", "false").lower() in ("true", "1", "yes"
 SENDMAIL_PATH = os.getenv("SENDMAIL_PATH", "").strip()
 SENDMAIL_FALLBACK_SMTP = os.getenv("SENDMAIL_FALLBACK_SMTP", "true").lower() in ("true", "1", "yes")
 
+# Injected Frontend URL Binding from Vercel Services (or local dev default)
+FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:5173").rstrip("/")
+
 
 def is_sendmail_binary_available() -> Tuple[bool, Optional[str]]:
     """Checks if a local sendmail executable is present on the host system."""
@@ -444,7 +447,7 @@ def send_offer_email(
 
               <!-- CTA Button -->
               <div style="text-align: center; margin-top: 10px;">
-                <a href="http://localhost:5173" style="display: inline-block; background: #D4AF37; color: #000000; font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; padding: 14px 32px; border-radius: 100px; box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);">
+                <a href="{FRONTEND_URL}" style="display: inline-block; background: #D4AF37; color: #000000; font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; padding: 14px 32px; border-radius: 100px; box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);">
                   Unlock Collection
                 </a>
               </div>
@@ -476,7 +479,7 @@ Benefit: {discount_percent}% Off {shipping_perk}
 Description: {description}
 Expires: {expiry_date}
 
-Shop now at: http://localhost:5173
+Shop now at: {FRONTEND_URL}
 Apply code '{coupon_code}' during checkout.
 """
 
@@ -554,7 +557,7 @@ def send_order_tracking_email(
     sgst_val = round(taxable_val * 0.09, 2)
     gst_val = round(cgst_val + sgst_val, 2)
 
-    tracking_url = f"http://localhost:5173/?track={order_id}"
+    tracking_url = f"{FRONTEND_URL}/?track={order_id}"
 
     html = f"""<!DOCTYPE html>
 <html>

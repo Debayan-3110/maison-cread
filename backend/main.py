@@ -648,7 +648,8 @@ def api_neon_google_url(req: NeonGoogleUrlRequest, request: Request):
     if not origin:
         host = request.headers.get("x-forwarded-host") or request.headers.get("host")
         scheme = request.headers.get("x-forwarded-proto") or request.url.scheme
-        origin = f"{scheme}://{host}" if host else "http://localhost:5173"
+        default_fe = os.getenv("FRONTEND_URL", "http://localhost:5173").rstrip("/")
+        origin = f"{scheme}://{host}" if host else default_fe
     
     res = get_neon_google_auth_url(origin=origin)
     if not res.get("success"):

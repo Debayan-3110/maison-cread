@@ -46,7 +46,8 @@ def get_backlink_url(request_host: Optional[str] = None, request_scheme: Optiona
             return f"{scheme}://{fe_host}/auth/callback"
         return f"{scheme}://{request_host}/auth/callback"
     
-    return os.getenv("NEON_AUTH_BACKLINK_URL", "http://localhost:5173/auth/callback")
+    default_fe = os.getenv("FRONTEND_URL", "http://localhost:5173").rstrip("/")
+    return os.getenv("NEON_AUTH_BACKLINK_URL", f"{default_fe}/auth/callback")
 
 def get_neon_auth_config(request_host: Optional[str] = None, request_scheme: Optional[str] = None) -> Dict[str, Any]:
     """
