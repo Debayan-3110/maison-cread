@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, useCallback, ReactNode } from 'react';
-import { User, Product, Order } from '../types/models';
+import { User, Product, Order, Shop } from '../types/models';
 import { ShopContextType, Toast } from '../types/context';
 import {
   fetchProducts,
@@ -22,7 +22,18 @@ import {
   disable2FAAPI,
   fetchDevEmails,
   clearAuthTokens,
-  getStoredAccessToken
+  getStoredAccessToken,
+  exportUserDataAPI,
+  deleteUserAccountAPI,
+  sendEmailOtpAPI,
+  verifyEmailOtpAPI,
+  sendPhoneOtpAPI,
+  verifyPhoneOtpAPI,
+  sendForgotPasswordOtpAPI,
+  verifyForgotPasswordOtpAPI,
+  getNeonGoogleAuthUrlAPI,
+  verifyNeonAuthSessionAPI,
+  getNearbyStoresAPI
 } from '../services/api';
 
 const ShopContext = createContext<ShopContextType | undefined>(undefined);
@@ -35,17 +46,32 @@ export const useShop = (): ShopContextType => {
   return context;
 };
 
+export const ALL_INDIAN_CATEGORIES = [
+  'all',
+  'fashion',
+  'beauty',
+  'electronics',
+  'home-apparels',
+  'appliances',
+  'toys',
+  'books',
+  'sports',
+  'food',
+  'worship',
+  'liquor-tobacco'
+];
+
 export const ShopProvider = ({ children }: { children: ReactNode }) => {
   // Theme state
   const [theme, setTheme] = useState<'light' | 'dark'>(() => {
-    return (localStorage.getItem('shopcread_theme') as 'light' | 'dark') || 'light';
+    return (localStorage.getItem('shopcread_theme') as 'light' | 'dark') || 'dark';
   });
 
   // API & Connection state
   const [backendStatus, setBackendStatus] = useState<'online' | 'offline' | 'checking'>('checking');
   const [products, setProducts] = useState<Product[]>([]);
   const [allProducts, setAllProducts] = useState<Product[]>([]);
-  const [categories, setCategories] = useState<string[]>(['all']);
+  const [categories, setCategories] = useState<string[]>(ALL_INDIAN_CATEGORIES);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [totalCount, setTotalCount] = useState<number>(0);
@@ -53,16 +79,55 @@ export const ShopProvider = ({ children }: { children: ReactNode }) => {
   const [loadingMore, setLoadingMore] = useState<boolean>(false);
 
   // Filters state
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [selectedCategory, setSelectedCategoryState] = useState<string>('all');
+  const [selectedSubcategory, setSelectedSubcategory] = useState<string>('all');
+  const [categoryGender, setCategoryGender] = useState<'all' | 'male' | 'female'>('all');
+  const [liquorOriginFilter, setLiquorOriginFilter] = useState<'all' | 'imported' | 'domestic'>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [sortBy, setSortBy] = useState<string>('featured');
-  const [maxPriceFilter, setMaxPriceFilter] = useState<number>(2500);
+  const [maxPriceFilter, setMaxPriceFilter] = useState<number>(300000);
+
+  // Statutory 18+ Age Verification for Liquor & Tobacco
+  const [isAgeVerified, setIsAgeVerified] = useState<boolean>(() => {
+    try {
+      return localStorage.getItem('shopcread_age_verified') === 'true';
+    } catch {
+      return false;
+    }
+  });
+  const [isAgeGateOpen, setIsAgeGateOpen] = useState<boolean>(false);
+
+  const verifyAgeAndEnterLiquor = useCallback(() => {
+    try {
+      localStorage.setItem('shopcread_age_verified', 'true');
+    } catch (e) {
+      console.warn(e);
+    }
+    setIsAgeVerified(true);
+    setIsAgeGateOpen(false);
+    setSelectedCategoryState('liquor-tobacco');
+    setSelectedSubcategory('all');
+    setLiquorOriginFilter('all');
+  }, []);
+
+  const setSelectedCategory = useCallback((cat: string) => {
+    if (cat === 'liquor-tobacco' && !isAgeVerified) {
+      setIsAgeGateOpen(true);
+      return;
+    }
+    setSelectedCategoryState(cat);
+    setSelectedSubcategory('all');
+    setCategoryGender('all');
+    setLiquorOriginFilter('all');
+  }, [isAgeVerified]);
 
   // Modals & Drawers state
   const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
   const [isWishlistOpen, setIsWishlistOpen] = useState<boolean>(false);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState<boolean>(false);
   const [isOrderHistoryOpen, setIsOrderHistoryOpen] = useState<boolean>(false);
+  const [isSellerStudioOpen, setIsSellerStudioOpen] = useState<boolean>(false);
+  const [isNeonHubOpen, setIsNeonHubOpen] = useState<boolean>(false);
   const [quickViewProduct, setQuickViewProduct] = useState<Product | null>(null);
 
   // --- Secure Authentication State ---
@@ -76,6 +141,35 @@ export const ShopProvider = ({ children }: { children: ReactNode }) => {
   const [isSecurityModalOpen, setIsSecurityModalOpen] = useState<boolean>(false);
   const [isDevMailboxOpen, setIsDevMailboxOpen] = useState<boolean>(false);
   const [devEmails, setDevEmails] = useState<any[]>([]);
+
+  // Legal & Compliance Suite
+  const [isLegalOpen, setIsLegalOpen] = useState<boolean>(false);
+  const [currentLegalPolicy, setCurrentLegalPolicy] = useState<string>('privacy');
+
+  // Sovereign Order Tracking & Registered Store Locator
+  const [isOrderTrackerOpen, setIsOrderTrackerOpen] = useState<boolean>(false);
+  const [trackingOrderId, setTrackingOrderId] = useState<string>('');
+  const [registeredShops, setRegisteredShops] = useState<Shop[]>([]);
+
+  const openOrderTracker = useCallback((orderId?: string) => {
+    if (orderId) setTrackingOrderId(orderId);
+    setIsOrderTrackerOpen(true);
+  }, []);
+
+  const closeOrderTracker = useCallback(() => {
+    setIsOrderTrackerOpen(false);
+  }, []);
+
+  const refreshShops = useCallback(async () => {
+    try {
+      const stores = await getNearbyStoresAPI(48.8675, 2.3294, 50000.0);
+      if (Array.isArray(stores)) {
+        setRegisteredShops(stores);
+      }
+    } catch (e) {
+      console.warn('Failed to load registered shops:', e);
+    }
+  }, []);
 
   // Persistent user state
   const [cart, setCart] = useState<(Product & { quantity: number })[]>(() => {
@@ -188,7 +282,7 @@ export const ShopProvider = ({ children }: { children: ReactNode }) => {
       try {
         const [catData, prodData] = await Promise.all([
           fetchCategories(),
-          fetchProducts({ limit: 24 })
+          fetchProducts({ limit: 50 })
         ]);
         setCategories(catData);
         setAllProducts(prodData.products || []);
@@ -210,13 +304,40 @@ export const ShopProvider = ({ children }: { children: ReactNode }) => {
     return () => clearInterval(interval);
   }, [pingBackend, loadCurrentUser, refreshDevEmails]);
 
+  const refreshCatalog = useCallback(async () => {
+    try {
+      const prodData = await fetchProducts({ limit: 50 });
+      if (prodData && prodData.products) {
+        setAllProducts(prodData.products);
+        setProducts(prodData.products);
+        setTotalCount(prodData.total || prodData.products.length);
+      }
+    } catch (err) {
+      console.warn('Could not refresh catalog:', err);
+    }
+  }, []);
+
+  const addSellerProduct = useCallback((newProduct: any) => {
+    setProducts((prev) => [newProduct, ...prev]);
+    setAllProducts((prev) => [newProduct, ...prev]);
+    setTotalCount((prev) => (prev ? prev + 1 : 1));
+    showToast(`✓ "${newProduct.title}" published and live in inventory!`, 'success');
+  }, [showToast]);
+
   useEffect(() => {
     const filterProducts = async () => {
       setLoading(true);
       try {
+        const activeSubcat = (selectedCategory === 'fashion' || selectedCategory === 'beauty')
+          ? (categoryGender !== 'all' ? categoryGender : (selectedSubcategory !== 'all' ? selectedSubcategory : ''))
+          : (selectedCategory === 'liquor-tobacco'
+              ? (liquorOriginFilter !== 'all' ? liquorOriginFilter : (selectedSubcategory !== 'all' ? selectedSubcategory : ''))
+              : (selectedSubcategory !== 'all' ? selectedSubcategory : ''));
+
         const data = await fetchProducts({
-          limit: 24,
+          limit: 50,
           category: selectedCategory,
+          subcategory: activeSubcat,
           search: searchQuery,
           maxPrice: maxPriceFilter,
           sortBy: sortBy
@@ -232,16 +353,23 @@ export const ShopProvider = ({ children }: { children: ReactNode }) => {
     };
     const timer = setTimeout(filterProducts, 300);
     return () => clearTimeout(timer);
-  }, [selectedCategory, searchQuery, maxPriceFilter, sortBy]);
+  }, [selectedCategory, selectedSubcategory, categoryGender, liquorOriginFilter, searchQuery, maxPriceFilter, sortBy]);
 
   const loadMore = useCallback(async () => {
     if (loadingMore || !hasMore) return;
     setLoadingMore(true);
     try {
+      const activeSubcat = (selectedCategory === 'fashion' || selectedCategory === 'beauty')
+        ? (categoryGender !== 'all' ? categoryGender : (selectedSubcategory !== 'all' ? selectedSubcategory : ''))
+        : (selectedCategory === 'liquor-tobacco'
+            ? (liquorOriginFilter !== 'all' ? liquorOriginFilter : (selectedSubcategory !== 'all' ? selectedSubcategory : ''))
+            : (selectedSubcategory !== 'all' ? selectedSubcategory : ''));
+
       const data = await fetchProducts({
-        limit: 24,
+        limit: 50,
         skip: products.length,
         category: selectedCategory,
+        subcategory: activeSubcat,
         search: searchQuery,
         maxPrice: maxPriceFilter,
         sortBy: sortBy
@@ -254,7 +382,35 @@ export const ShopProvider = ({ children }: { children: ReactNode }) => {
     } finally {
       setLoadingMore(false);
     }
-  }, [loadingMore, hasMore, products.length, selectedCategory, searchQuery, maxPriceFilter, sortBy]);
+  }, [loadingMore, hasMore, products.length, selectedCategory, selectedSubcategory, categoryGender, liquorOriginFilter, searchQuery, maxPriceFilter, sortBy]);
+
+  const loadAll = useCallback(async () => {
+    setLoading(true);
+    try {
+      const activeSubcat = (selectedCategory === 'fashion' || selectedCategory === 'beauty')
+        ? (categoryGender !== 'all' ? categoryGender : (selectedSubcategory !== 'all' ? selectedSubcategory : ''))
+        : (selectedCategory === 'liquor-tobacco'
+            ? (liquorOriginFilter !== 'all' ? liquorOriginFilter : (selectedSubcategory !== 'all' ? selectedSubcategory : ''))
+            : (selectedSubcategory !== 'all' ? selectedSubcategory : ''));
+
+      const data = await fetchProducts({
+        limit: 250,
+        skip: 0,
+        category: selectedCategory,
+        subcategory: activeSubcat,
+        search: searchQuery,
+        maxPrice: maxPriceFilter,
+        sortBy: sortBy
+      });
+      setProducts(data.products || []);
+      setTotalCount(data.total || (data.products ? data.products.length : 0));
+      setHasMore(false);
+    } catch (err) {
+      console.error('Failed to load all products:', err);
+    } finally {
+      setLoading(false);
+    }
+  }, [selectedCategory, selectedSubcategory, categoryGender, liquorOriginFilter, searchQuery, maxPriceFilter, sortBy]);
 
   const toggleTheme = () => {
     setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
@@ -282,15 +438,13 @@ export const ShopProvider = ({ children }: { children: ReactNode }) => {
 
   const updateCartQuantity = (productId: number, delta: number) => {
     setCart((prevCart) =>
-      prevCart
-        .map((item) => {
-          if (item.id === productId) {
-            const newQty = item.quantity + delta;
-            return newQty > 0 ? { ...item, quantity: newQty } : null;
-          }
-          return item;
-        })
-        .filter(Boolean)
+      prevCart.flatMap((item) => {
+        if (item.id === productId) {
+          const newQty = item.quantity + delta;
+          return newQty > 0 ? [{ ...item, quantity: newQty }] : [];
+        }
+        return [item];
+      })
     );
   };
 
@@ -365,7 +519,18 @@ export const ShopProvider = ({ children }: { children: ReactNode }) => {
   }, [allProducts, addToCart, showToast]);
 
 
-  const createOrder = async (shippingInfo: any, paymentInfo: any, subtotal: number, tax: number, shippingFee: number, discount: number, total: number) => {
+  const createOrder = async (
+    shippingInfo: any,
+    paymentInfo: any,
+    subtotal: number,
+    tax: number,
+    shippingFee: number,
+    discount: number,
+    total: number,
+    donation?: any,
+    deliveryLat?: number,
+    deliveryLng?: number
+  ) => {
     const payload = {
       items: cart.map((i) => {
         return {
@@ -374,10 +539,18 @@ export const ShopProvider = ({ children }: { children: ReactNode }) => {
           price: i.price,
           quantity: i.quantity,
           category: i.category,
-          thumbnail: i.thumbnail
+          thumbnail: i.thumbnail,
+          shopName: i.shopName,
+          expiryDate: i.expiryDate,
+          manufacturingDate: i.manufacturingDate,
+          batchNumber: i.batchNumber
         };
       }),
+      shipping: shippingInfo,
       shippingInfo,
+      deliveryLat: deliveryLat || shippingInfo?.latitude,
+      deliveryLng: deliveryLng || shippingInfo?.longitude,
+      payment: paymentInfo,
       paymentInfo: {
         method: paymentInfo.method,
         last4: paymentInfo.cardNumber ? paymentInfo.cardNumber.slice(-4) : '4242'
@@ -387,23 +560,26 @@ export const ShopProvider = ({ children }: { children: ReactNode }) => {
         tax,
         shippingFee,
         discount,
-        total
+        total,
+        donation: donation || null
       }
     };
 
-    let newOrder;
+    let newOrder: Order;
     try {
       newOrder = await createBackendOrder(payload);
     } catch {
       newOrder = {
-        id: 'NX-' + Math.floor(100000 + Math.random() * 900000),
+        id: 'MC-ORD-2026-' + Math.floor(10000 + Math.random() * 90000),
+        orderId: 'MC-ORD-2026-' + Math.floor(10000 + Math.random() * 90000),
         date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }),
         items: [...cart],
         shippingInfo,
         paymentInfo: { method: paymentInfo.method, last4: paymentInfo.cardNumber ? paymentInfo.cardNumber.slice(-4) : '4242' },
-        summary: { subtotal, tax, shippingFee, discount, total },
-        status: 'Processing',
-        estimatedDelivery: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })
+        summary: { subtotal, tax, shippingFee, discount, total, donation: donation || null },
+        status: 'confirmed_by_shop',
+        trackingStage: 'confirmed_by_shop',
+        estimatedDelivery: '2-3 business days'
       };
     }
 
@@ -425,7 +601,7 @@ export const ShopProvider = ({ children }: { children: ReactNode }) => {
     setAuthTempToken(null);
   };
 
-  const handleLogin = async ({ email, password, rememberMe }: { email: string; password: string; rememberMe: boolean }) => {
+  const handleLogin = async ({ email, password, rememberMe }: { email: string; password: string; rememberMe: boolean }): Promise<{ success: boolean; requires2FA?: boolean }> => {
     try {
       const res = await loginUser({ email, password, rememberMe });
       if (res.status === '2fa_required') {
@@ -440,15 +616,16 @@ export const ShopProvider = ({ children }: { children: ReactNode }) => {
         showToast(`Welcome back, ${res.user.name}!`, 'success');
         const userOrders = await fetchBackendOrders();
         if (userOrders) setOrders(userOrders);
-        return { success: true };
+        return { success: true, requires2FA: false };
       }
+      return { success: false, requires2FA: false };
     } catch (err: any) {
       showToast(err.message || 'Login failed', 'error');
       throw err;
     }
   };
 
-  const handleLogin2FA = async ({ code, rememberMe }: { code: string; rememberMe: boolean }) => {
+  const handleLogin2FA = async ({ code, rememberMe }: { code: string; rememberMe: boolean }): Promise<{ success: boolean }> => {
     try {
       const res = await login2FAUser({ tempToken: authTempToken, code, rememberMe });
       if (res.status === 'authenticated') {
@@ -459,6 +636,7 @@ export const ShopProvider = ({ children }: { children: ReactNode }) => {
         if (userOrders) setOrders(userOrders);
         return { success: true };
       }
+      return { success: false };
     } catch (err: any) {
       showToast(err.message || 'Verification failed', 'error');
       throw err;
@@ -530,6 +708,110 @@ export const ShopProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
+  const handleEmailSendOtp = async (email: string, purpose: 'login' | 'signup' = 'login') => {
+    try {
+      const res = await sendEmailOtpAPI({ email, purpose });
+      showToast(`Verification passcode dispatched via SMTP to ${email}`, 'info');
+      refreshDevEmails();
+      return res;
+    } catch (err: any) {
+      showToast(err.message || 'Failed to dispatch email OTP via SMTP', 'error');
+      throw err;
+    }
+  };
+
+  const handleEmailVerifyOtp = async (payload: { email: string; otp: string; fullName?: string; rememberMe?: boolean }) => {
+    try {
+      const res = await verifyEmailOtpAPI(payload);
+      if (res.user) {
+        setUser(res.user);
+        closeAuthModal();
+        showToast(res.message || 'Welcome to Maison Cread!', 'success');
+        try {
+          const remoteOrders = await fetchBackendOrders();
+          setOrders(remoteOrders);
+        } catch {
+          // fallback
+        }
+      }
+      return res;
+    } catch (err: any) {
+      showToast(err.message || 'Email OTP verification failed', 'error');
+      throw err;
+    }
+  };
+
+  const handlePhoneSendOtp = async (phone: string, purpose: 'login' | 'signup' = 'login') => {
+    try {
+      const res = await sendPhoneOtpAPI({ phone, purpose });
+      showToast(`Verification code dispatched to ${phone}`, 'info');
+      refreshDevEmails();
+      return res;
+    } catch (err: any) {
+      showToast(err.message || 'Failed to dispatch phone OTP', 'error');
+      throw err;
+    }
+  };
+
+  const handlePhoneVerifyOtp = async (payload: { phone: string; otp: string; fullName?: string; rememberMe?: boolean }) => {
+    try {
+      const res = await verifyPhoneOtpAPI(payload);
+      if (res.user) {
+        setUser(res.user);
+        closeAuthModal();
+        showToast(res.message || 'Welcome to Maison Cread!', 'success');
+        try {
+          const remoteOrders = await fetchBackendOrders();
+          setOrders(remoteOrders);
+        } catch {
+          // fallback
+        }
+      }
+      return res;
+    } catch (err: any) {
+      showToast(err.message || 'Phone verification failed', 'error');
+      throw err;
+    }
+  };
+
+  const handleForgotPasswordSendOtp = async (identifier: string) => {
+    try {
+      const res = await sendForgotPasswordOtpAPI(identifier);
+      showToast(`Verification code sent to ${identifier}`, 'info');
+      refreshDevEmails();
+      return res;
+    } catch (err: any) {
+      showToast(err.message || 'Failed to send verification code', 'error');
+      throw err;
+    }
+  };
+
+  const handleForgotPasswordVerifyOtp = async (payload: { identifier: string; otp: string; newPassword: string }) => {
+    try {
+      const res = await verifyForgotPasswordOtpAPI(payload);
+      showToast('Password reset successfully! Please log in.', 'success');
+      setAuthModalView('login');
+      return res;
+    } catch (err: any) {
+      showToast(err.message || 'Password reset verification failed', 'error');
+      throw err;
+    }
+  };
+
+  const handleNeonGoogleLogin = async () => {
+    try {
+      const res = await getNeonGoogleAuthUrlAPI();
+      if (res.url) {
+        window.location.href = res.url;
+      } else {
+        throw new Error('Google authorization URL was not returned by Neon Auth.');
+      }
+    } catch (err: any) {
+      showToast(err.message || 'Failed to initialize Google login via Neon Auth', 'error');
+      throw err;
+    }
+  };
+
   const handleLogout = async () => {
     try {
       await logoutUserAPI();
@@ -542,6 +824,76 @@ export const ShopProvider = ({ children }: { children: ReactNode }) => {
       setUser(null);
     }
   };
+
+  const openLegalPolicy = useCallback((policyKey: string = 'privacy') => {
+    setCurrentLegalPolicy(policyKey);
+    setIsLegalOpen(true);
+    window.location.hash = `/legal/${policyKey}`;
+  }, []);
+
+  const closeLegalPolicy = useCallback(() => {
+    setIsLegalOpen(false);
+    if (window.location.hash.startsWith('#/legal')) {
+      history.replaceState(null, '', window.location.pathname + window.location.search);
+    }
+  }, []);
+
+  const openCookiePreferences = useCallback(() => {
+    window.dispatchEvent(new CustomEvent('shopcread_open_cookie_banner'));
+  }, []);
+
+  useEffect(() => {
+    const handleHashCheck = () => {
+      const hash = window.location.hash;
+      if (hash.startsWith('#/legal')) {
+        const parts = hash.split('/');
+        const policy = parts[2] || 'privacy';
+        setCurrentLegalPolicy(policy);
+        setIsLegalOpen(true);
+      }
+    };
+    handleHashCheck();
+    window.addEventListener('hashchange', handleHashCheck);
+    return () => window.removeEventListener('hashchange', handleHashCheck);
+  }, []);
+
+  const handleExportPersonalData = useCallback(async () => {
+    try {
+      const data = await exportUserDataAPI();
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `ShopCread_Data_Export_${Date.now()}.json`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast('Personal data exported successfully (DPDP / GDPR Art 20)', 'success');
+      return data;
+    } catch (err: any) {
+      showToast(err.message || 'Failed to export data', 'error');
+      throw err;
+    }
+  }, [showToast]);
+
+  const handleDeleteAccount = useCallback(async (password: string, confirmationPhrase: string) => {
+    try {
+      const res = await deleteUserAccountAPI(password, confirmationPhrase);
+      clearAuthTokens();
+      setUser(null);
+      setCart([]);
+      setWishlist([]);
+      localStorage.removeItem('shopcread_cart');
+      localStorage.removeItem('shopcread_wishlist');
+      setIsSecurityModalOpen(false);
+      showToast('Account permanently erased under DPDP Sec 12 / GDPR Art 17', 'info');
+      return res;
+    } catch (err: any) {
+      showToast(err.message || 'Account erasure failed', 'error');
+      throw err;
+    }
+  }, [showToast]);
 
   const filteredProducts = products.filter((product) => product.price <= maxPriceFilter).sort((a, b) => {
     if (sortBy === 'price-asc') return a.price - b.price;
@@ -559,16 +911,30 @@ export const ShopProvider = ({ children }: { children: ReactNode }) => {
     backendStatus,
     pingBackend,
     products: filteredProducts,
+    setProducts,
     allProducts,
+    setAllProducts,
     categories,
     loading,
     error,
     totalCount,
     hasMore,
     loadMore,
+    loadAll,
     loadingMore,
     selectedCategory,
     setSelectedCategory,
+    selectedSubcategory,
+    setSelectedSubcategory,
+    categoryGender,
+    setCategoryGender,
+    liquorOriginFilter,
+    setLiquorOriginFilter,
+    isAgeVerified,
+    setIsAgeVerified,
+    isAgeGateOpen,
+    setIsAgeGateOpen,
+    verifyAgeAndEnterLiquor,
     searchQuery,
     setSearchQuery,
     sortBy,
@@ -608,6 +974,7 @@ export const ShopProvider = ({ children }: { children: ReactNode }) => {
     authLoading,
     isAuthenticated: Boolean(user),
     isAuthModalOpen,
+    setIsAuthModalOpen,
     openAuthModal,
     closeAuthModal,
     authModalView,
@@ -623,6 +990,13 @@ export const ShopProvider = ({ children }: { children: ReactNode }) => {
     handleResendVerification,
     handleForgotPassword,
     handleResetPassword,
+    handleEmailSendOtp,
+    handleEmailVerifyOtp,
+    handlePhoneSendOtp,
+    handlePhoneVerifyOtp,
+    handleForgotPasswordSendOtp,
+    handleForgotPasswordVerifyOtp,
+    handleNeonGoogleLogin,
     handleLogout,
     loadCurrentUser,
     isSecurityModalOpen,
@@ -631,6 +1005,28 @@ export const ShopProvider = ({ children }: { children: ReactNode }) => {
     setIsDevMailboxOpen,
     devEmails,
     refreshDevEmails,
+    isSellerStudioOpen,
+    setIsSellerStudioOpen,
+    isNeonHubOpen,
+    setIsNeonHubOpen,
+    addSellerProduct,
+    refreshCatalog,
+    isLegalOpen,
+    setIsLegalOpen,
+    currentLegalPolicy,
+    openLegalPolicy,
+    closeLegalPolicy,
+    openCookiePreferences,
+    handleExportPersonalData,
+    handleDeleteAccount,
+    isOrderTrackerOpen,
+    setIsOrderTrackerOpen,
+    trackingOrderId,
+    setTrackingOrderId,
+    openOrderTracker,
+    closeOrderTracker,
+    registeredShops,
+    refreshShops,
   };
 
   return <ShopContext.Provider value={value}>{children}</ShopContext.Provider>;

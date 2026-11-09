@@ -1,6 +1,6 @@
 import React from 'react';
 import { X } from 'lucide-react';
-import { useShop } from '../context/ShopContext.tsx';
+import { useShop } from '../context/ShopContext';
 
 interface ToastProps {
     toast: {

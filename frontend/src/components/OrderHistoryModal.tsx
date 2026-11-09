@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useShop } from '../context/ShopContext.tsx';
+import { useShop } from '../context/ShopContext';
 import { formatRupees } from '../utils/commerce';
-import { X, Package, Calendar, DollarSign, ArrowRight, CheckCircle2, Clock } from 'lucide-react';
+import { X, Package, Calendar, DollarSign, ArrowRight, CheckCircle2, Clock, Compass } from 'lucide-react';
 import { Order } from '../types/models';
 
 interface TrackingStep {
@@ -16,7 +16,8 @@ export default function OrderHistoryModal() {
     isOrderHistoryOpen,
     setIsOrderHistoryOpen,
     orders,
-    user
+    user,
+    openOrderTracker
   } = useShop();
 
   const [selectedOrderId, setSelectedOrderId] = useState<string | null>(null);
@@ -132,6 +133,18 @@ export default function OrderHistoryModal() {
                       </div>
                     </div>
                   ))}
+                </div>
+                <div className="pt-2">
+                  <button
+                    onClick={() => {
+                      setIsOrderHistoryOpen(false);
+                      openOrderTracker(selectedOrder.id);
+                    }}
+                    className="w-full py-2.5 rounded-xl bg-accent text-on-solid text-xs font-bold flex items-center justify-center gap-2 shadow-quiet hover:opacity-90 transition-all"
+                  >
+                    <Compass className="w-4 h-4" />
+                    <span>Open Live GPS Sovereign Tracker</span>
+                  </button>
                 </div>
               </div>
             </div>

@@ -1,8 +1,9 @@
 import React from 'react';
-import { useShop } from '../context/ShopContext.tsx';
+import { useShop } from '../context/ShopContext';
 import { X, Heart, Plus } from 'lucide-react';
 import { Product } from '../types/models';
 import { formatINR } from '../utils/commerce';
+import { getSafeImageUrl, handleImageError } from '../utils/imageFallback';
 
 export default function WishlistDrawer() {
   const {
@@ -62,7 +63,12 @@ export default function WishlistDrawer() {
                       className="frame-still flex h-20 w-20 shrink-0 items-center justify-center p-2"
                       aria-label={`View ${product.title}`}
                     >
-                      <img src={product.thumbnail} alt={product.title} className="max-h-full max-w-full object-contain" />
+                      <img
+                        src={getSafeImageUrl(product.thumbnail, product.category)}
+                        alt={product.title}
+                        onError={(e) => handleImageError(e, product.category)}
+                        className="max-h-full max-w-full object-contain"
+                      />
                     </button>
 
                     <div className="min-w-0 flex-1">

@@ -17,6 +17,7 @@ def get_search_results(
     conn: sqlite3.Connection,
     search_query: str = "",
     category: str = "all",
+    subcategory: Optional[str] = None,
     brand: str = "all",
     min_price: Optional[float] = None,
     max_price: Optional[float] = None,
@@ -39,8 +40,24 @@ def get_search_results(
 
     # 2. Category filtering
     if category and category.lower() != "all":
-        where_clauses.append("category = ?")
+        norm_cat = category.lower().replace("'", "").replace("-", " ").strip()
+        where_clauses.append("(LOWER(category) = LOWER(?) OR LOWER(category_name) = LOWER(?) OR REPLACE(REPLACE(LOWER(category), '-', ' '), '''', '') = ?)")
         params.append(category)
+        params.append(category)
+        params.append(norm_cat)
+
+    # 2b. Subcategory / Gender / Origin / Style filtering
+    if subcategory and subcategory.lower() not in ["all", "", "none"]:
+        sub_clean = subcategory.lower().strip()
+        if sub_clean in ["male", "men"]:
+            where_clauses.append("(LOWER(tags) LIKE '%\"male\"%' OR LOWER(tags) LIKE '%\"men\"%') AND LOWER(tags) NOT LIKE '%\"female\"%' AND LOWER(tags) NOT LIKE '%\"women\"%'")
+        elif sub_clean in ["female", "women"]:
+            where_clauses.append("(LOWER(tags) LIKE '%\"female\"%' OR LOWER(tags) LIKE '%\"women\"%')")
+        else:
+            where_clauses.append("(LOWER(tags) LIKE ? OR LOWER(specs) LIKE ? OR LOWER(title) LIKE ?)")
+            params.append(f"%{sub_clean}%")
+            params.append(f"%{sub_clean}%")
+            params.append(f"%{sub_clean}%")
 
     # 3. Brand filtering
     if brand and brand.lower() != "all":
@@ -67,7 +84,7 @@ def get_search_results(
             safe_query = "".join(c for c in clean_query if c.isalnum() or c.isspace()).strip()
             if safe_query:
                 fts_match = " OR ".join(f'"{token}"*' for token in safe_query.split())
-                where_clauses.append("id IN (SELECT id FROM products_fts WHERE products_fts MATCH ?)")
+                where_clauses.append("id IN (SELECT rowid FROM products_fts WHERE products_fts MATCH ?)")
                 params.append(fts_match)
         else:
             where_clauses.append("(title LIKE ? OR brand LIKE ?)")
@@ -91,7 +108,8 @@ def get_search_results(
     query_sql = f"""
     SELECT id, sku, slug, title, description, currency, price, mrp, discount_percentage,
            category, brand, thumbnail, images, tags, specs, rating, review_count, stock,
-           weight_g, is_serialized, is_obd_required, is_fragile, is_bulky, is_returnable
+           weight_g, is_serialized, is_obd_required, is_fragile, is_bulky, is_returnable,
+           shop_id, shop_name, expiry_date, manufacturing_date, batch_number, is_perishable
     FROM products
     WHERE {where_stmt}
     {sort_sql}
@@ -130,7 +148,7 @@ def get_search_results(
             "slug": r[2],
             "title": r[3],
             "description": r[4],
-            "currency": r[5] or "USD",
+            "currency": r[5] or "INR",
             "price": float(r[6] or 0),
             "mrp": float(r[7] or r[6] or 0),
             "discountPercentage": float(r[8] or 0),
@@ -149,6 +167,12 @@ def get_search_results(
             "isFragile": bool(r[21]),
             "isBulky": bool(r[22]),
             "isReturnable": bool(r[23]),
+            "shopId": r[24] if len(r) > 24 else None,
+            "shopName": r[25] if len(r) > 25 else None,
+            "expiryDate": r[26] if len(r) > 26 else None,
+            "manufacturingDate": r[27] if len(r) > 27 else None,
+            "batchNumber": r[28] if len(r) > 28 else None,
+            "isPerishable": bool(r[29]) if len(r) > 29 and r[29] is not None else False,
             "status": "active"
         })
 

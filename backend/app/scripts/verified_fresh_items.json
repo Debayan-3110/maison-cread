@@ -1,0 +1,1117 @@
+[
+  {
+    "title": "Ecuadorian Velvet Red Roses (Bouquet of 24)",
+    "category": "fresh-flowers",
+    "category_name": "Fresh Flowers",
+    "brand": "Maison Floral Atelier",
+    "rating": 4.9,
+    "min_price": 899,
+    "max_price": 2499,
+    "description": "Long-stemmed (70cm) velvety crimson roses with huge head blooms. Cut at sunrise, conditioned in floral hydration for 12 days vase life.",
+    "variants": [
+      "Bouquet of 12",
+      "Bouquet of 24",
+      "Grand 50-Stem",
+      "Glass Vase Arrangement"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/f/f1/Bouquet-of-Red-Roses.png"
+  },
+  {
+    "title": "Royal Casablanca White Lilies (5-Stem)",
+    "category": "fresh-flowers",
+    "category_name": "Fresh Flowers",
+    "brand": "Highland Glasshouse Estate",
+    "rating": 4.9,
+    "min_price": 650,
+    "max_price": 1850,
+    "description": "Intensely fragrant pure white oriental lilies with multiple pristine blooms per stem. Symbol of tranquility, elegance, and pure grace.",
+    "variants": [
+      "3-Stem Bunch",
+      "5-Stem Bouquet",
+      "Ceramic Urn Arrangement"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/9/92/A_bunch_of_orange_and_white_lily_flowers._Coloured_lithograp_Wellcome_V0044589.jpg"
+  },
+  {
+    "title": "French Provence Wild Blue Lavender",
+    "category": "fresh-flowers",
+    "category_name": "Fresh Flowers",
+    "brand": "Provence Alpine Slopes",
+    "rating": 4.8,
+    "min_price": 399,
+    "max_price": 1100,
+    "description": "Calming, aromatic wild blue lavender tied with raw jute. Naturally deters tension and infuses living spaces with sweet herbal serenity.",
+    "variants": [
+      "Hand-Tied Bunch",
+      "Bundle of 3",
+      "Linen Sachet Set"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/6/66/Celebrate_motherhood_with_a_stunning_display_of_a_pregnant_woman_holding_lavender_in_a_cozy_indoor_setting.jpg"
+  },
+  {
+    "title": "Exotic Imperial Purple Dendrobium Orchids",
+    "category": "fresh-flowers",
+    "category_name": "Fresh Flowers",
+    "brand": "Chiang Mai Orchid Sanctuaries",
+    "rating": 4.8,
+    "min_price": 499,
+    "max_price": 1499,
+    "description": "Graceful sprays of dendrobium orchids with vibrant magenta-violet petals. Remarkably long-lasting (up to 3 weeks in fresh water).",
+    "variants": [
+      "5-Stem Bunch",
+      "10-Stem Bouquet",
+      "Ikebana Arrangement"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/1/11/IMG_8444_close_up_for_Purple_Orchid_Flower_photographed_by_Peak_Hora.jpg"
+  },
+  {
+    "title": "Golden Sunburst Giant Sunflowers (5-Stem)",
+    "category": "fresh-flowers",
+    "category_name": "Fresh Flowers",
+    "brand": "Karnataka Bio-Flora Farm",
+    "rating": 4.7,
+    "min_price": 350,
+    "max_price": 950,
+    "description": "Radiant, uplifting giant sunflowers with rich brown centers and glowing golden petals. Guaranteed to brighten any room with pure optimism.",
+    "variants": [
+      "3-Stem Bunch",
+      "5-Stem Bouquet",
+      "Rustic Kraft Wrap"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/3/31/Bouquet_of_Sunflowers_MET_DP130800.jpg"
+  },
+  {
+    "title": "Amsterdam Pastel Holland Tulips (20-Stem)",
+    "category": "fresh-flowers",
+    "category_name": "Fresh Flowers",
+    "brand": "Keukenhof Certified Cultivars",
+    "rating": 4.9,
+    "min_price": 799,
+    "max_price": 2200,
+    "description": "Crisp, elegant bell-shaped blooms in blush pink, pure ivory, and soft peach. Freshly air-freighted under active cold-chain.",
+    "variants": [
+      "10-Stem Bunch",
+      "20-Stem Bouquet",
+      "Glass Cylinder Vase"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/b/b1/A_bouquet_of_orange_tulips_on_a_table.jpg"
+  },
+  {
+    "title": "Cloud Blue Hydrangea Heritage Blooms",
+    "category": "fresh-flowers",
+    "category_name": "Fresh Flowers",
+    "brand": "Ooty Mist Valleys",
+    "rating": 4.8,
+    "min_price": 450,
+    "max_price": 1600,
+    "description": "Massive, voluminous globes of delicate periwinkle petals. A breathtaking centerpiece for dining tables and festive ceremonies.",
+    "variants": [
+      "Single Statement Stem",
+      "3-Stem Bouquet",
+      "Luxury Fluted Vase"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/f/f2/Blue_Hydrangea_%28common_names_hydrangea_or_hortensia%29.jpg"
+  },
+  {
+    "title": "Maison Heritage Blush Peonies (10-Stem)",
+    "category": "fresh-flowers",
+    "category_name": "Fresh Flowers",
+    "brand": "Maison Floral Atelier",
+    "rating": 4.9,
+    "min_price": 999,
+    "max_price": 2999,
+    "description": "Opulent arrangement of ruffled garden peonies, blush spray roses, and scented eucalyptus greens in our signature embossed luxury box.",
+    "variants": [
+      "Atelier Box",
+      "Grand Urn",
+      "Bridal Edition"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Alice_Agathe_Poinot_de_Villiers_-_Bouquet_of_peonies%2C_lilacs_and_tulips.jpg"
+  },
+  {
+    "title": "Sacred Temple Jasmine & Marigold Garland",
+    "category": "fresh-flowers",
+    "category_name": "Fresh Flowers",
+    "brand": "Madurai Temple Gardens",
+    "rating": 4.8,
+    "min_price": 199,
+    "max_price": 599,
+    "description": "Heavily scented fresh Sambac jasmine hand-strung with deep saffron marigold blossoms. Traditional serenity for home altars & doors.",
+    "variants": [
+      "1 Meter Garland",
+      "2 Meter Door Toran",
+      "Festive Pack of 4"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/5/58/Abraham_Mignon_-_A_Garland_of_Flowers_-_KMS315_-_Statens_Museum_for_Kunst.jpg"
+  },
+  {
+    "title": "Sunset Coral & Peach Carnations (20-Stem)",
+    "category": "fresh-flowers",
+    "category_name": "Fresh Flowers",
+    "brand": "Nilgiri Floriculture",
+    "rating": 4.7,
+    "min_price": 320,
+    "max_price": 780,
+    "description": "Frilled, long-lasting coral and peach carnations with a delicate clove scent. Resilient 14-day bloom life in clean water.",
+    "variants": [
+      "10-Stem Bunch",
+      "20-Stem Wrap",
+      "Vase Set"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/f/ff/Bouquet_of_pink_carnations.jpg"
+  },
+  {
+    "title": "English White Daisy Meadow Bunch",
+    "category": "fresh-flowers",
+    "category_name": "Fresh Flowers",
+    "brand": "Coorg Valley Flora",
+    "rating": 4.7,
+    "min_price": 280,
+    "max_price": 650,
+    "description": "Cheerful white English daisies with bright sunny golden centers. Hand-tied with rustic hemp ribbon and seasonal greenery.",
+    "variants": [
+      "Standard Bunch",
+      "Vase Arrangement",
+      "Family Meadow Pack"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/a/a4/African_Cape_Daisy_%28Osteospermum_barberiae%29.jpg"
+  },
+  {
+    "title": "Crimson Velvet Wine Dahlias",
+    "category": "fresh-flowers",
+    "category_name": "Fresh Flowers",
+    "brand": "Shillong Highland Florals",
+    "rating": 4.8,
+    "min_price": 420,
+    "max_price": 1150,
+    "description": "Intricate geometric petals with velvet crimson and wine-red ombre gradient. Striking luxury accent for modern interior aesthetics.",
+    "variants": [
+      "5-Stem Bunch",
+      "Artisanal Vase Set"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/1/17/A_maroon_Dahlia_flower_%28Lalbagh%2C_Bangalore%2C_2017%29.jpg"
+  },
+  {
+    "title": "Sacred Dew-Kissed Pink Lotus Blossoms",
+    "category": "fresh-flowers",
+    "category_name": "Fresh Flowers",
+    "brand": "Varanasi Sacred Waters",
+    "rating": 4.9,
+    "min_price": 350,
+    "max_price": 890,
+    "description": "Freshly harvested sacred pink lotus with dew-kissed petals. Revered for centuries for tranquil beauty, meditation, and spiritual purity.",
+    "variants": [
+      "Bundle of 3",
+      "Bundle of 5",
+      "Temple Brass Bowl Set"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/9/91/Blossoming_Lotuses_%28247227583%29.jpeg"
+  },
+  {
+    "title": "Himalayan Indigo Wild Iris",
+    "category": "fresh-flowers",
+    "category_name": "Fresh Flowers",
+    "brand": "Kashmir Alpine Gardens",
+    "rating": 4.8,
+    "min_price": 480,
+    "max_price": 1250,
+    "description": "Regal deep violet and indigo petals with golden yellow crests. Delicate and gracefully formed, symbolizing wisdom and cherished courage.",
+    "variants": [
+      "5-Stem Bunch",
+      "10-Stem Wrap"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Dwarf_crested_iris_iris_cristata_purple_flower.jpg"
+  },
+  {
+    "title": "Peach Ranunculus Paper-Bloom Atelier",
+    "category": "fresh-flowers",
+    "category_name": "Fresh Flowers",
+    "brand": "Maison Floral Atelier",
+    "rating": 4.9,
+    "min_price": 680,
+    "max_price": 1850,
+    "description": "Layered paper-thin petals in blush pink and peach. Exceptionally chic editorial floral arrangement favored by top European florists.",
+    "variants": [
+      "10-Stem Bunch",
+      "Ceramic Fluted Vase"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/8/87/Bouquet_of_wild_flowers_1.jpg"
+  },
+  {
+    "title": "Golden Yellow Freesia Sprays",
+    "category": "fresh-flowers",
+    "category_name": "Fresh Flowers",
+    "brand": "Ooty Floriculture",
+    "rating": 4.8,
+    "min_price": 380,
+    "max_price": 920,
+    "description": "Gracefully arched stems with citrus-peppery sweet fragrance. Adds brilliant golden radiance and freshness to living spaces.",
+    "variants": [
+      "10-Stem Bunch",
+      "15-Stem Bunch"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/1/1c/Flower%2C_Freesia_-_Flickr_-_nekonomania.jpg"
+  },
+  {
+    "title": "Pure White Anemone Monochrome Edition",
+    "category": "fresh-flowers",
+    "category_name": "Fresh Flowers",
+    "brand": "Maison Floral Atelier",
+    "rating": 4.8,
+    "min_price": 550,
+    "max_price": 1400,
+    "description": "Striking ivory petals centered around a dramatic dark indigo-black eye. Contemporary minimalist decor for modern architectural homes.",
+    "variants": [
+      "7-Stem Bunch",
+      "Monochrome Atelier Vase"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/a/a7/Anemone_%27Honorine_Jobert%27.JPG"
+  },
+  {
+    "title": "Vibrant Gerbera Daisies Sunset Bunch",
+    "category": "fresh-flowers",
+    "category_name": "Fresh Flowers",
+    "brand": "Pune Greenhouse Farms",
+    "rating": 4.7,
+    "min_price": 290,
+    "max_price": 750,
+    "description": "Vibrant daisy-like giant blooms with velvety petals in orange, yellow, and coral. Freshly harvested for maximum cheerful vase life.",
+    "variants": [
+      "6-Stem Bunch",
+      "12-Stem Wrap"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/e/ec/A_bouquet_of_Gerberas_on_Ermou_Street.jpg"
+  },
+  {
+    "title": "Aromatic White Cream Gardenia Blossoms",
+    "category": "fresh-flowers",
+    "category_name": "Fresh Flowers",
+    "brand": "Mysuru Botanical Gardens",
+    "rating": 4.9,
+    "min_price": 590,
+    "max_price": 1600,
+    "description": "Heavily perfumed creamy white blossoms resting on glossy evergreen leaves. Unmatched intoxicating scent and timeless refinement.",
+    "variants": [
+      "Box of 4 Blooms",
+      "Stemmed Glass Arrangement"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/4/43/Branch_with_white_blossoms_%284544480163%29.jpg"
+  },
+  {
+    "title": "Pastel Spring Sweet Pea Cluster",
+    "category": "fresh-flowers",
+    "category_name": "Fresh Flowers",
+    "brand": "Shimla Valley Flora",
+    "rating": 4.7,
+    "min_price": 340,
+    "max_price": 820,
+    "description": "Ruffled butterfly-winged petals with sweet honey fragrance in pastel lilac and rose. Brings vintage English countryside charm indoors.",
+    "variants": [
+      "12-Stem Bunch",
+      "Rustic Mason Jar Arrangement"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/4/4a/A_Sheet_of_Studies_of_Flowers-_A_Rose%2C_a_Heartsease%2C_a_Sweet_Pea%2C_a_Garden_Pea%2C_and_a_Lax-flowered_Orchid_MET_2004.78.jpg"
+  },
+  {
+    "title": "Wild Mountain Gypsophila Baby's Breath",
+    "category": "fresh-flowers",
+    "category_name": "Fresh Flowers",
+    "brand": "Nilgiri Highlands",
+    "rating": 4.7,
+    "min_price": 260,
+    "max_price": 620,
+    "description": "Delicate clouds of tiny starry white blossoms. Creates ethereal, airy elegance as a standalone cloud or accompanying accent.",
+    "variants": [
+      "Giant Cloud Bunch",
+      "Kraft Paper Wrap"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/9/9f/Close-up_of_2_baby%27s_breath_%28Gypsophila_paniculata%29_flowers.jpg"
+  },
+  {
+    "title": "Autumn Harvest Golden Chrysanthemums",
+    "category": "fresh-flowers",
+    "category_name": "Fresh Flowers",
+    "brand": "Deccan Botanical Gardens",
+    "rating": 4.8,
+    "min_price": 330,
+    "max_price": 850,
+    "description": "Full-headed golden pompon and spider chrysanthemums. Long-lasting symbolic flowers representing longevity, joy, and golden autumn warmth.",
+    "variants": [
+      "5-Stem Bunch",
+      "10-Stem Bouquet"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/7/7b/Chrysanthemum_November_2015_Sochi.JPG"
+  },
+  {
+    "title": "Kyoto Sakura Cherry Blossom Branches",
+    "category": "fresh-flowers",
+    "category_name": "Fresh Flowers",
+    "brand": "Himalayan Sakura Groves",
+    "rating": 4.9,
+    "min_price": 650,
+    "max_price": 1950,
+    "description": "Gracefully budding pink and white branches that blossom over 10 days in water. Celebrates renewal and exquisite seasonal mindfulness.",
+    "variants": [
+      "3 Tall Branches",
+      "5 Architectural Branches"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/3/36/Alnarp_%28Sweden%29_-_Pink_Cherry_blossom_%2826239366104%29.jpg"
+  },
+  {
+    "title": "Deep Scarlet Field Poppies Bunch",
+    "category": "fresh-flowers",
+    "category_name": "Fresh Flowers",
+    "brand": "Kashmir Valley Flora",
+    "rating": 4.7,
+    "min_price": 310,
+    "max_price": 780,
+    "description": "Tissue-paper scarlet petals with velvety black centers. Delicate, wild, and breathtakingly dramatic in direct morning natural light.",
+    "variants": [
+      "10-Stem Bunch",
+      "Hand-Tied Kraft Wrap"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/a/af/Red-Poppy-Flower-Field_28276-480x360_%284817518132%29.jpg"
+  },
+  {
+    "title": "Alphonso Mangoes (GI Tagged Ratnagiri)",
+    "category": "organic-fruits",
+    "category_name": "Organic Fruits",
+    "brand": "Ratnagiri Organic Groves",
+    "rating": 4.9,
+    "min_price": 499,
+    "max_price": 1899,
+    "description": "Handpicked premium Devgad Alphonso mangoes, naturally tree-ripened without chemicals or carbides. Unrivaled saffron pulp aroma with Brix index 21\u00b0.",
+    "variants": [
+      "1 kg Crate",
+      "2.5 kg Gift Box",
+      "5 kg Master Box",
+      "Pack of 6"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/d/d5/Alphonso_Mango_In_a_non-ripe_state.jpg"
+  },
+  {
+    "title": "Kashmiri Royal Gala Mountain Apples",
+    "category": "organic-fruits",
+    "category_name": "Organic Fruits",
+    "brand": "Sopore Valley Orchards",
+    "rating": 4.8,
+    "min_price": 280,
+    "max_price": 850,
+    "description": "Crisp, sweet, and bursting with orchard juice. Grown at 6,000 ft altitude with cold mountain spring irrigation. 100% wax-free skin.",
+    "variants": [
+      "1 kg Tray",
+      "2 kg Pack",
+      "4 kg Family Pack"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Cross_section_of_Galaxy%2C_National_Fruit_Collection_%28acc._1994-009%29.jpg"
+  },
+  {
+    "title": "Organic Butter Hass Avocados",
+    "category": "organic-fruits",
+    "category_name": "Organic Fruits",
+    "brand": "Kodaikanal Highland Farms",
+    "rating": 4.7,
+    "min_price": 299,
+    "max_price": 799,
+    "description": "Creamy, buttery, rich in heart-healthy oleic fats. Perfectly ripened with zero stringy fibers. Ideal for artisanal sourdough toasts & guacamole.",
+    "variants": [
+      "Pack of 2",
+      "Pack of 4",
+      "1 kg Pack"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/0/07/Hass_avocado_-white_background.jpg"
+  },
+  {
+    "title": "Wild Mountain Fresh Blueberries",
+    "category": "organic-fruits",
+    "category_name": "Organic Fruits",
+    "brand": "Nilgiri Berry Collective",
+    "rating": 4.9,
+    "min_price": 349,
+    "max_price": 999,
+    "description": "Plump, antioxidant-dense wild blueberries with natural silvery bloom. Hand-sorted at dawn for maximum firm crunch and tart sweetness.",
+    "variants": [
+      "125g Punnet",
+      "250g Box",
+      "500g Tub"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/2/27/Blueberries_%28Image_Number_D3649-1%29_by_Peggy_Greb.jpg"
+  },
+  {
+    "title": "Exotic Ruby Magenta Dragonfruit",
+    "category": "organic-fruits",
+    "category_name": "Organic Fruits",
+    "brand": "Deccan Organic Flora",
+    "rating": 4.6,
+    "min_price": 180,
+    "max_price": 650,
+    "description": "Deep magenta flesh packed with prebiotic fiber and vitamin C. Grown with bio-organic compost and harvested fully ripe.",
+    "variants": [
+      "Single Large (450g)",
+      "Pack of 2",
+      "Pack of 4"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/5/50/Butterfly_053.JPG"
+  },
+  {
+    "title": "Nagpur Sweet Sunburst Mandarins",
+    "category": "organic-fruits",
+    "category_name": "Organic Fruits",
+    "brand": "Vidarbha Sun Orchards",
+    "rating": 4.7,
+    "min_price": 199,
+    "max_price": 599,
+    "description": "Easy-to-peel golden mandarins overflowing with vitamin C and refreshing citrus oils. No synthetic wax, naturally sun-kissed.",
+    "variants": [
+      "1 kg Net Bag",
+      "2 kg Box",
+      "5 kg Festive Crate"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/2/22/2023_Mandarynki.jpg"
+  },
+  {
+    "title": "Crimson Ruby Anar Pomegranates",
+    "category": "organic-fruits",
+    "category_name": "Organic Fruits",
+    "brand": "Aravalli Organic Belt",
+    "rating": 4.8,
+    "min_price": 240,
+    "max_price": 680,
+    "description": "Jewel-like ruby arils with soft edible seeds. Abundant in polyphenols, pressed or eaten fresh. Harvested with zero synthetic sprays.",
+    "variants": [
+      "1 kg Pack (3-4 pcs)",
+      "2 kg Box",
+      "Peeled Cups 200g"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/f/fe/Cracked_pomegranate_on_a_tree.jpg"
+  },
+  {
+    "title": "Golden Sunburst Kiwi Fruit",
+    "category": "organic-fruits",
+    "category_name": "Organic Fruits",
+    "brand": "Himalayan Foothills Orchard",
+    "rating": 4.8,
+    "min_price": 220,
+    "max_price": 550,
+    "description": "Silky, fuzzless skin with sweet golden flesh and a honey-like floral finish. Rich in vitamin E, folate, and potassium.",
+    "variants": [
+      "Pack of 3",
+      "Pack of 6",
+      "1 kg Box"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/6/68/Dried_kiwi_fruit_slices.jpg"
+  },
+  {
+    "title": "Robusta Rainforest Mountain Bananas",
+    "category": "organic-fruits",
+    "category_name": "Organic Fruits",
+    "brand": "Wayanad Rainfed Groves",
+    "rating": 4.7,
+    "min_price": 90,
+    "max_price": 240,
+    "description": "Creamy, dense texture with exceptional sweetness. Grown without chemical ripening chambers in chemical-free rich rainforest soil.",
+    "variants": [
+      "1 Dozen (12 pcs)",
+      "500g Bunch",
+      "2 Dozen Bundle"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/1/1e/A_Bunch_of_Bananas_displayed_by_a_roadside_seller_02.jpg"
+  },
+  {
+    "title": "Mediterranean Black Mission Figs",
+    "category": "organic-fruits",
+    "category_name": "Organic Fruits",
+    "brand": "Deccan Fig Sanctuary",
+    "rating": 4.8,
+    "min_price": 320,
+    "max_price": 890,
+    "description": "Velvety soft purple-black skin with strawberry-jam interior. Luscious, raw, and harvested at peak brix sweetness.",
+    "variants": [
+      "250g Punnet",
+      "500g Box",
+      "1 kg Crate"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Fresh_fruits_and_vegetables_in_2020_01.jpg"
+  },
+  {
+    "title": "Nashik Valley Crimson Seedless Grapes",
+    "category": "organic-fruits",
+    "category_name": "Organic Fruits",
+    "brand": "Nashik Valley Vineyards",
+    "rating": 4.7,
+    "min_price": 160,
+    "max_price": 480,
+    "description": "Crunchy, thin-skinned table grapes bursting with floral sweetness. 100% residue-free certified with zero pesticide trace.",
+    "variants": [
+      "500g Punnet",
+      "1 kg Box",
+      "2 kg Basket"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/7/74/Black_seedless_grapes_4300175324717_berry_and_seed_section_01.jpg"
+  },
+  {
+    "title": "Sweet Alpine Strawberries Punnet",
+    "category": "organic-fruits",
+    "category_name": "Organic Fruits",
+    "brand": "Mahabaleshwar Hills",
+    "rating": 4.9,
+    "min_price": 210,
+    "max_price": 580,
+    "description": "Aromatic, conical ruby strawberries picked before sunrise. Intense sweet flavor with natural shine and tender pulp.",
+    "variants": [
+      "250g Punnet",
+      "500g Twin Pack"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/5/52/20120106-OC-AMW-0539_%287414202672%29.jpg"
+  },
+  {
+    "title": "Wild Forest Red Raspberries",
+    "category": "organic-fruits",
+    "category_name": "Organic Fruits",
+    "brand": "Kashmir Berry Haven",
+    "rating": 4.9,
+    "min_price": 380,
+    "max_price": 990,
+    "description": "Delicate, hollow scarlet berries brimming with bright tart perfume. Flown fresh in temperature-controlled micro-boxes.",
+    "variants": [
+      "125g Clamshell",
+      "250g Dual Pack"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/f/f2/Fresh-muesli.jpg"
+  },
+  {
+    "title": "Plump Wild Blackberries",
+    "category": "organic-fruits",
+    "category_name": "Organic Fruits",
+    "brand": "Ooty Highland Farms",
+    "rating": 4.8,
+    "min_price": 360,
+    "max_price": 920,
+    "description": "Glossy deep purple drupelets packed with bioflavonoids. Succulent sweet-tart juice ideal for artisanal breakfasts.",
+    "variants": [
+      "150g Punnet",
+      "300g Box"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Annual_report_of_the_Fruit_Growers%27_Association_of_Ontario%2C_1900_%281901%29_%2814742767936%29.jpg"
+  },
+  {
+    "title": "Sugar-Baby Sweet Watermelon Slices",
+    "category": "organic-fruits",
+    "category_name": "Organic Fruits",
+    "brand": "Tungabhadra Basin Organic",
+    "rating": 4.7,
+    "min_price": 140,
+    "max_price": 390,
+    "description": "Intensely crisp red heart with dark emerald rind. High lycopene and naturally thirst-quenching hydration.",
+    "variants": [
+      "Half Melon (1.8kg)",
+      "Whole Melon (3.5kg)"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/4/41/9909Yellow_Crimson_Watermelon_06.jpg"
+  },
+  {
+    "title": "Golden Ripe Hawaiian Papaya",
+    "category": "organic-fruits",
+    "category_name": "Organic Fruits",
+    "brand": "Mysuru Sun Belt",
+    "rating": 4.7,
+    "min_price": 120,
+    "max_price": 340,
+    "description": "Deep orange buttery flesh loaded with natural papain digestive enzymes. Smooth, rich, and mildly musky sweetness.",
+    "variants": [
+      "Single Large (800g)",
+      "Pack of 2"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/a/aa/Longitudinal_section_of_ripe_papaya_fruit_in_West_Bengal%2C_India.jpg"
+  },
+  {
+    "title": "Pink Tropical Sweet Guava",
+    "category": "organic-fruits",
+    "category_name": "Organic Fruits",
+    "brand": "Allahabad Certified Groves",
+    "rating": 4.8,
+    "min_price": 150,
+    "max_price": 420,
+    "description": "Fragrant soft pink interior with edible crisp seeds. Incredible vitamin C concentration and vintage Indian orchard nostalgia.",
+    "variants": [
+      "1 kg Pack",
+      "2 kg Box"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Careya_arborea_%28Wild_Guava%29_-_flower.JPG"
+  },
+  {
+    "title": "Mauritius Sweet Honey Pineapple",
+    "category": "organic-fruits",
+    "category_name": "Organic Fruits",
+    "brand": "Vazhakulam Organic Estate",
+    "rating": 4.8,
+    "min_price": 180,
+    "max_price": 480,
+    "description": "Golden core with low acidity and intoxicating floral honey sweetness. GI tagged Vazhakulam pineapple at peak ripeness.",
+    "variants": [
+      "Single Golden (1.2kg)",
+      "Duo Pack"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/1/15/Fresh_Fruit_Salad.jpg"
+  },
+  {
+    "title": "Purple Granadilla Passion Fruit",
+    "category": "organic-fruits",
+    "category_name": "Organic Fruits",
+    "brand": "Coorg Rainforest Belt",
+    "rating": 4.9,
+    "min_price": 260,
+    "max_price": 690,
+    "description": "Wrinkled deep purple shells containing aromatic golden pulp with crunchy black seeds. Sensational tropical perfume.",
+    "variants": [
+      "Pack of 4",
+      "Pack of 8",
+      "1 kg Crate"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/c/c1/DSCF0829_Assorted_fresh_tropical_fruits_neatly_prepped_and_displayed_on_plates_at_a_bustling_market_stall_-_passion_fruit_papaya_mango_and_more_ready_to_enjoy.jpg"
+  },
+  {
+    "title": "Velvet Yellow Summer Peaches",
+    "category": "organic-fruits",
+    "category_name": "Organic Fruits",
+    "brand": "Kullu Valley Orchards",
+    "rating": 4.8,
+    "min_price": 310,
+    "max_price": 840,
+    "description": "Soft fuzzy golden skin with aromatic sweet nectar. Freestone pit separating cleanly from juicy golden flesh.",
+    "variants": [
+      "Pack of 4",
+      "1 kg Basket"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/0/05/Liat_Portal_for_Foodie_Disorder_-_Peach.jpg"
+  },
+  {
+    "title": "Golden Apricots of Ladakh",
+    "category": "organic-fruits",
+    "category_name": "Organic Fruits",
+    "brand": "Ladakh High Altitude Groves",
+    "rating": 4.9,
+    "min_price": 390,
+    "max_price": 980,
+    "description": "Sun-drenched Himalayan apricots known as Raktsey Karpo. Honeyed almond fragrance with velvety golden skin.",
+    "variants": [
+      "500g Punnet",
+      "1 kg Heritage Box"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/6/6e/Apricot.jpg"
+  },
+  {
+    "title": "Dark Bing Sweet Cherries",
+    "category": "organic-fruits",
+    "category_name": "Organic Fruits",
+    "brand": "Shimla Alpine Orchards",
+    "rating": 4.9,
+    "min_price": 450,
+    "max_price": 1250,
+    "description": "Deep mahogany heart-shaped cherries with firm, snap-crisp skin and luscious wine-sweet juice.",
+    "variants": [
+      "250g Punnet",
+      "500g Box"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/5/51/Cross_section_of_Cherry_Cox_%28Stogden%29%2C_National_Fruit_Collection_%28acc._1984-173%29.jpg"
+  },
+  {
+    "title": "Deep Purple Black Amber Plums",
+    "category": "organic-fruits",
+    "category_name": "Organic Fruits",
+    "brand": "Kotgarh Valley Orchards",
+    "rating": 4.7,
+    "min_price": 240,
+    "max_price": 680,
+    "description": "Glossy ebony skin giving way to amber-red flesh with refreshing tang. Excellent source of dietary fiber and vitamin K.",
+    "variants": [
+      "500g Tray",
+      "1 kg Crate"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/b/b4/Black_plum_fruit.jpg"
+  },
+  {
+    "title": "Tender Green Coconut from Pollachi",
+    "category": "organic-fruits",
+    "category_name": "Organic Fruits",
+    "brand": "Pollachi Coconut Groves",
+    "rating": 4.9,
+    "min_price": 85,
+    "max_price": 220,
+    "description": "Heavy with sweet, pure electrolyte water and silky spoon meat. Harvested by skilled climbers from organic palm groves.",
+    "variants": [
+      "Single Chilled",
+      "Pack of 3",
+      "Pack of 6"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/6/6b/Buko_juice_%28coconut_water_in_the_Philippines%29.jpg"
+  },
+  {
+    "title": "Wild Alaskan King Salmon Fillet",
+    "category": "fresh-fish",
+    "category_name": "Fresh Fish & Catch",
+    "brand": "Alaskan Cold Waters",
+    "rating": 4.9,
+    "min_price": 899,
+    "max_price": 3200,
+    "description": "Sustainably hook-and-line caught in icy pristine waters. Deep coral hue loaded with natural marine Omega-3 fatty acids. Sashimi grade.",
+    "variants": [
+      "250g Fillet",
+      "500g Fillet",
+      "1 kg Whole Side"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/f/f1/Grilled_plated_salmon_fillet.jpg"
+  },
+  {
+    "title": "Fresh Atlantic Seabass (Bhetki)",
+    "category": "fresh-fish",
+    "category_name": "Fresh Fish & Catch",
+    "brand": "Bay of Bengal Deep Catch",
+    "rating": 4.8,
+    "min_price": 550,
+    "max_price": 1500,
+    "description": "Pristine pearlescent white flesh with mild, sweet flavor and delicate flakes. Perfect for pan-searing, steaming, or traditional fish curries.",
+    "variants": [
+      "500g Curry Cut",
+      "500g Boneless Fillet",
+      "1 kg Whole Cleaned"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/a/ae/Hirame_flatfish_and_suzuki_seabass_fillet.JPG"
+  },
+  {
+    "title": "Yellowfin Tuna Steaks (Sashimi Grade)",
+    "category": "fresh-fish",
+    "category_name": "Fresh Fish & Catch",
+    "brand": "Maldives Sustainable Tuna",
+    "rating": 4.9,
+    "min_price": 699,
+    "max_price": 2100,
+    "description": "Ruby red, dense, meaty steaks caught by single-line artisanal fishermen. Zero carbon monoxide treatment, 100% natural color and texture.",
+    "variants": [
+      "250g Steak",
+      "500g Steaks (2 pcs)",
+      "1 kg Loin"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/3/36/DFC_4014_Freshly_made_steak_tartare_on_crusty_rolls_topped_with_chopped_onions_and_served_with_sliced_cucumber_tomato_and_greens.jpg"
+  },
+  {
+    "title": "Jumbo Wild Tiger Prawns",
+    "category": "fresh-fish",
+    "category_name": "Fresh Fish & Catch",
+    "brand": "Sundarbans Estuary",
+    "rating": 4.8,
+    "min_price": 649,
+    "max_price": 1899,
+    "description": "Succulent, firm jumbo prawns (10-12 count per kg) with sweet oceanic snap. Deveined and cleaned while retaining shell head for maximum flavor.",
+    "variants": [
+      "250g Pack",
+      "500g Pack",
+      "1 kg Jumbo Box"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Fishing_boat_in_Sundarban_Tiger_Reserve%2C_West_Bengal%2C_India_03.jpg"
+  },
+  {
+    "title": "Silver Pomfret (Vavval / Paplet)",
+    "category": "fresh-fish",
+    "category_name": "Fresh Fish & Catch",
+    "brand": "Konkan Coastal Fishery",
+    "rating": 4.9,
+    "min_price": 620,
+    "max_price": 1950,
+    "description": "Prized for its buttery, delicate texture and sweet aroma. Delivered whole gutted with gills removed, ready for rava fry or curry.",
+    "variants": [
+      "1 Medium Fish (350g)",
+      "Pack of 2 (600g)",
+      "1 kg Large Cleaned"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/1/11/195_-_pomfret_%28pla_jeramet_talay%29.jpg"
+  },
+  {
+    "title": "Atlantic Rock Lobster Tails",
+    "category": "fresh-fish",
+    "category_name": "Fresh Fish & Catch",
+    "brand": "North Atlantic Cold Reefs",
+    "rating": 4.9,
+    "min_price": 1499,
+    "max_price": 4200,
+    "description": "Wild-caught cold-water lobster tails with rich, decadent firm sweet meat. Flash-frozen at sea with zero preservatives.",
+    "variants": [
+      "Pair of Tails (300g)",
+      "4 Tails (600g)",
+      "1 kg Feast Pack"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/5/55/The_National_Assembly_or_Meeting_of_the_Three_Estates_%28BM_1868%2C0808.5907%29.jpg"
+  },
+  {
+    "title": "King Mackerel (Surmai / Seer Fish)",
+    "category": "fresh-fish",
+    "category_name": "Fresh Fish & Catch",
+    "brand": "Arabian Sea Harbour",
+    "rating": 4.8,
+    "min_price": 580,
+    "max_price": 1750,
+    "description": "Firm, meaty circular steaks with single central bone. The gold standard for spicy tawa fry and rich coconut curries.",
+    "variants": [
+      "500g Slices",
+      "1 kg Steaks",
+      "Whole Cleaned 1.5kg"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/0/05/Parasite140092-fig2_FIG_2_Cestoda_Trypanorhyncha_Callitetrarhynchus_gracilis_in_Scomberomorus_commerson.JPG"
+  },
+  {
+    "title": "Fresh Mangrove Mud Crab",
+    "category": "fresh-fish",
+    "category_name": "Fresh Fish & Catch",
+    "brand": "Kerala Backwaters",
+    "rating": 4.8,
+    "min_price": 750,
+    "max_price": 1999,
+    "description": "Heavy, sweet mud crabs packed with claw meat and delicate roe. Sourced live daily from certified mangrove habitats.",
+    "variants": [
+      "2 Large Crabs (700g)",
+      "3 Medium Crabs (1kg)",
+      "Giant Single (600g)"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/8/81/Boiled_mud_crab_%28Scylla_serrata%29_on_plate.jpg"
+  },
+  {
+    "title": "Ocean Catch Seafood Medley",
+    "category": "fresh-fish",
+    "category_name": "Fresh Fish & Catch",
+    "brand": "Maison Fishery Reserve",
+    "rating": 4.9,
+    "min_price": 999,
+    "max_price": 2399,
+    "description": "Chef daily coastal selection: tiger prawns, salmon cubes, seabass fillets, and cleaned calamari rings for luxury bouillabaisse & paella.",
+    "variants": [
+      "500g Medley Pack",
+      "1 kg Grand Platter"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/f/f7/Fideuawithlangoustines.jpg"
+  },
+  {
+    "title": "Tender Atlantic Calamari Squid Rings",
+    "category": "fresh-fish",
+    "category_name": "Fresh Fish & Catch",
+    "brand": "Bay of Biscay Waters",
+    "rating": 4.7,
+    "min_price": 420,
+    "max_price": 1150,
+    "description": "Cleaned white squid tubes sliced into tender rings. Naturally tender and sweet, perfect for crisp flash-frying or tomato stew.",
+    "variants": [
+      "400g Pack",
+      "800g Value Pack"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Bocadillo_de_calamares-2009.jpg"
+  },
+  {
+    "title": "Fresh Diver Sea Scallops",
+    "category": "fresh-fish",
+    "category_name": "Fresh Fish & Catch",
+    "brand": "Hokkaido Cold Bays",
+    "rating": 4.9,
+    "min_price": 1150,
+    "max_price": 2800,
+    "description": "Hand-harvested jumbo diver scallops (U-10 count). Sweet, buttery, dry-packed with zero added water or tripolyphosphate.",
+    "variants": [
+      "250g Pan-Ready",
+      "500g Gourmet Pack"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/1/16/Scallop_with_Sea_Urchin_-_Tempura_Hajime_-_South_Melbourne%2C_Victoria%2C_Australia.jpg"
+  },
+  {
+    "title": "Himalayan Rainbow Trout",
+    "category": "fresh-fish",
+    "category_name": "Fresh Fish & Catch",
+    "brand": "Kullu Springfed Farms",
+    "rating": 4.8,
+    "min_price": 480,
+    "max_price": 1350,
+    "description": "Cold-water river trout with delicate pink flesh and silver-spotted skin. Exceptionally clean flavor, pan-fries beautifully with butter and herbs.",
+    "variants": [
+      "2 Whole Fish (600g)",
+      "4 Whole Fish (1.2kg)"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/2/21/Abdominal_cavity_of_rainbow_trout_%28Oncorhynchus_mykiss%29.jpg"
+  },
+  {
+    "title": "Malabar Coastal Black Tiger Shrimp",
+    "category": "fresh-fish",
+    "category_name": "Fresh Fish & Catch",
+    "brand": "Malabar Coastline",
+    "rating": 4.8,
+    "min_price": 520,
+    "max_price": 1450,
+    "description": "Medium-large sweet coastal shrimp, head-off and deveined. Juicy firm bite suited for coastal coconut gravies and skewers.",
+    "variants": [
+      "500g Deveined",
+      "1 kg Master Pack"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/6/6c/A_black_fisherman_and_various_fish_%2814885095606%29.jpg"
+  },
+  {
+    "title": "Deep Sea Wild Red Snapper",
+    "category": "fresh-fish",
+    "category_name": "Fresh Fish & Catch",
+    "brand": "Andaman Coral Shelf",
+    "rating": 4.8,
+    "min_price": 620,
+    "max_price": 1780,
+    "description": "Vibrant ruby-pink skin with lean, firm white meat. Cleaned and scaled, ready for whole baking, salt-crusting, or grilling.",
+    "variants": [
+      "Whole Fish (1kg)",
+      "2 Small Fish (800g)"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/8/8b/Lutjanus_campechanus.png"
+  },
+  {
+    "title": "Wild Pacific Halibut Steaks",
+    "category": "fresh-fish",
+    "category_name": "Fresh Fish & Catch",
+    "brand": "Pacific Deep Banks",
+    "rating": 4.9,
+    "min_price": 1250,
+    "max_price": 3100,
+    "description": "Snow-white, thick, meaty halibut steaks with gently sweet flakes. Retains exceptional moisture when grilled or roasted.",
+    "variants": [
+      "300g Steak",
+      "600g (2 Steaks)"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/8/80/FMIB_51643_Halibut%2C_Hippoglossus_hippoglossus_%28Linnaeus%29_Sp_Paul_Island%2C_Bering_Sea.jpeg"
+  },
+  {
+    "title": "Ocean Fresh Blue Mussels in Shell",
+    "category": "fresh-fish",
+    "category_name": "Fresh Fish & Catch",
+    "brand": "Scottish Sea Lochs",
+    "rating": 4.7,
+    "min_price": 390,
+    "max_price": 950,
+    "description": "Rope-grown plump mussels bursting with oceanic liquor. Scrubbed and debearded, ready for classic white wine marini\u00e8re.",
+    "variants": [
+      "1 kg Mesh Bag",
+      "2 kg Party Tub"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/a/a8/Magallana_gigas_-_Mytilus_edulis_-_Centre_Ostr%C3%A9icole_-_Leucate.jpg"
+  },
+  {
+    "title": "Sweet Atlantic Cherrystone Clams",
+    "category": "fresh-fish",
+    "category_name": "Fresh Fish & Catch",
+    "brand": "Cape Cod Tidal Flats",
+    "rating": 4.8,
+    "min_price": 450,
+    "max_price": 1100,
+    "description": "Tender, sweet hard-shell clams purged of grit. Outstanding raw on the half shell, steamed with garlic, or in rich chowders.",
+    "variants": [
+      "1 Dozen (12 pcs)",
+      "2 Dozen Feast Pack"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/1/10/BoredEncrustedShell.JPG"
+  },
+  {
+    "title": "Wild Caught Swordfish Loin Steaks",
+    "category": "fresh-fish",
+    "category_name": "Fresh Fish & Catch",
+    "brand": "Mediterranean Open Waters",
+    "rating": 4.8,
+    "min_price": 850,
+    "max_price": 2250,
+    "description": "Dense, steak-like texture reminiscent of tender veal. Holds up exceptionally well over hardwood lump charcoal.",
+    "variants": [
+      "350g Steak",
+      "700g Double Pack"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/c/c6/FMIB_51919_Swordfish%2C_Xiphias_gladius_%28Linnaeus%29.jpeg"
+  },
+  {
+    "title": "Giant Freshwater Scampi King Prawns",
+    "category": "fresh-fish",
+    "category_name": "Fresh Fish & Catch",
+    "brand": "Godavari Estuary Waters",
+    "rating": 4.9,
+    "min_price": 780,
+    "max_price": 2150,
+    "description": "Impressive blue-claw freshwater scampi with giant succulent tail meat and rich head butter.",
+    "variants": [
+      "500g (4-6 pcs)",
+      "1 kg Banquet Pack"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/d/df/Fish_food_Udonthani_WD1.JPG"
+  },
+  {
+    "title": "Artisanal Oak Cold-Smoked Salmon",
+    "category": "fresh-fish",
+    "category_name": "Fresh Fish & Catch",
+    "brand": "Highland Smokehouse Atelier",
+    "rating": 4.9,
+    "min_price": 920,
+    "max_price": 2450,
+    "description": "Cured with sea salt and demerara sugar, then slowly smoked over aged Scottish whisky oak casks. Silky, melt-in-mouth ribbons.",
+    "variants": [
+      "150g Retail Pack",
+      "300g Platter Edition"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/5/5d/2014_smoked_salmon_and_egg_salad_toasted_baguette.JPG"
+  },
+  {
+    "title": "Konkan Coast Fresh Sardines (Tarli)",
+    "category": "fresh-fish",
+    "category_name": "Fresh Fish & Catch",
+    "brand": "Goa Coastal Shoals",
+    "rating": 4.7,
+    "min_price": 180,
+    "max_price": 450,
+    "description": "Silvery, nutrient-packed wild sardines rich in natural marine calcium and EPA/DHA. Fantastic crisp pan-fried with coarse semolina.",
+    "variants": [
+      "500g Cleaned",
+      "1 kg Fresh Catch"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/3/3d/2014_03_19_397_Eingelegte_Fische.jpg"
+  },
+  {
+    "title": "Bay of Bengal Prime Hilsa (Ilish)",
+    "category": "fresh-fish",
+    "category_name": "Fresh Fish & Catch",
+    "brand": "Padma River Mouth",
+    "rating": 4.9,
+    "min_price": 1200,
+    "max_price": 3600,
+    "description": "The undisputed queen of river fish. Unrivaled rich oil content and melt-in-mouth aromatics, prized for traditional shorshe ilish.",
+    "variants": [
+      "Whole Fish (1.2kg)",
+      "500g Centre Cuts"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/5/54/Hilsa_%28Tenualosa_ilisha%29.jpg"
+  },
+  {
+    "title": "Yellow Crab Claws Pre-Cracked",
+    "category": "fresh-fish",
+    "category_name": "Fresh Fish & Catch",
+    "brand": "Arabian Gulf Catch",
+    "rating": 4.8,
+    "min_price": 890,
+    "max_price": 2350,
+    "description": "Plump cocktail claws scored for effortless dining. Sweet, dense meat ready to chill and serve with drawn lemon herb butter.",
+    "variants": [
+      "400g Cocktail Pack",
+      "800g Party Platter"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/b/be/HK_TST_%E5%B0%96%E6%9D%B1_East_%E9%A6%99%E6%B8%AF%E5%AF%8C%E8%B1%AA%E4%B9%9D%E9%BE%8D%E9%85%92%E5%BA%97_Regal_Kowloon_Hotel_%E9%9B%85%E5%BB%8A%E5%92%96%E5%95%A1%E5%AE%A4_Cafe_Allegro_buffet_Restaurant_%E7%86%9F%E9%A3%9F_cooked_food_March_2023_Px3_pan_fried_crabs_01.jpg"
+  },
+  {
+    "title": "Mediterranean Sea Bream (Dorade)",
+    "category": "fresh-fish",
+    "category_name": "Fresh Fish & Catch",
+    "brand": "Aegean Sea Clear Waters",
+    "rating": 4.8,
+    "min_price": 590,
+    "max_price": 1650,
+    "description": "Glistening silver skin with delicate, juicy white meat. Cleaned and scaled, ready for roasting over sea salt and fennel fronds.",
+    "variants": [
+      "Whole Cleaned (600g)",
+      "Pair of Fish (1.2kg)"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/d/d4/Daurades_royales_%28Sparus_aurata%29_en_bassin_%28Ifremer_00633-74539_-_29678%29.jpg"
+  }
+]

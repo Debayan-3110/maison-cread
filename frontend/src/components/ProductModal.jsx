@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { useShop } from '../context/ShopContext.tsx';
+import { useShop } from '../context/ShopContext';
 import { formatINR } from '../utils/commerce';
-import { X, Star, Heart, Minus, Plus, ArrowRight, ShieldCheck, Truck, RotateCcw } from 'lucide-react';
+import { getSafeImageUrl, getCloudinaryOptimizedImageUrl, handleImageError } from '../utils/imageFallback';
+import { X, Star, Heart, Minus, Plus, ArrowRight, ShieldCheck, Truck, RotateCcw, Building, Calendar, Clock, Compass } from 'lucide-react';
 
 const sizes = ['Standard', 'Extended', 'Gift wrapped'];
 
@@ -17,7 +18,8 @@ function ModalContent({ product, setQuickViewProduct }) {
 
   const isWishlisted = isInWishlist(product.id);
   const originalPrice = product.price / (1 - product.discountPercentage / 100);
-  const images = product.images && product.images.length > 0 ? product.images : [product.thumbnail];
+  const rawImages = product.images && product.images.length > 0 ? product.images : [product.thumbnail];
+  const images = rawImages.map((img) => getCloudinaryOptimizedImageUrl(img, 900, product.category));
 
   const [selectedImage, setSelectedImage] = useState(images[0]);
   const [quantity, setQuantity] = useState(1);
@@ -51,12 +53,12 @@ function ModalContent({ product, setQuickViewProduct }) {
           <div className="grid grid-cols-1 gap-5 p-4 pt-14 phone-lg:p-6 phone-lg:pt-14 sm:p-8 md:grid-cols-2 md:gap-8 lg:gap-12">
             {/* Gallery */}
             <div className="space-y-3">
-              <div className="frame-still relative flex h-56 items-center justify-center p-4 phone-lg:h-72 phone-lg:p-6 sm:h-96 3xl:h-[32rem]">
-                <div className="texture-lines absolute inset-0 opacity-50" />
+              <div className="relative flex aspect-[4/5] w-full items-center justify-center overflow-hidden rounded-[14px] bg-recess sm:h-[28rem] 3xl:h-[32rem]">
                 <img
                   src={selectedImage}
                   alt={product.title}
-                  className="relative max-h-full max-w-full object-contain transition-opacity duration-500"
+                  onError={(e) => handleImageError(e, product.category)}
+                  className="h-full w-full object-cover object-center transition-all duration-500"
                 />
                 {product.discountPercentage > 0 && (
                   <span className="absolute left-4 top-4 rounded-full bg-accent-soft px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-accent">
@@ -76,7 +78,12 @@ function ModalContent({ product, setQuickViewProduct }) {
                         selectedImage === img ? 'border-body/50' : 'opacity-60 hover:opacity-100'
                       }`}
                     >
-                      <img src={img} alt="" className="h-full w-full object-contain" />
+                      <img
+                        src={img}
+                        alt=""
+                        onError={(e) => handleImageError(e, product.category)}
+                        className="h-full w-full object-contain"
+                      />
                     </button>
                   ))}
                 </div>
@@ -107,6 +114,41 @@ function ModalContent({ product, setQuickViewProduct }) {
                 <span className="numerals font-display text-[34px] leading-none text-body">{formatINR(product.price)}</span>
                 {product.discountPercentage > 0 && (
                   <span className="numerals pb-1 text-[13px] text-faint line-through">{formatINR(originalPrice)}</span>
+                )}
+              </div>
+
+              {/* Atelier Provenance, Expiry & Manufacturing Certification Card */}
+              <div className="mt-5 p-3.5 rounded-2xl border border-hairline bg-recess space-y-2.5 text-xs">
+                <div className="flex items-center justify-between">
+                  <span className="font-semibold text-accent flex items-center gap-1.5 text-[11px] uppercase tracking-wider">
+                    <Building className="w-3.5 h-3.5" /> Supplying Atelier
+                  </span>
+                  <span className="px-2 py-0.5 rounded-full bg-accent-soft text-accent font-semibold text-[10px]">
+                    Verified Partner
+                  </span>
+                </div>
+                <p className="font-bold text-body text-[13px]">{product.shopName || "Savile Row Bespoke Tailors"}</p>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1 border-t border-hairline">
+                  <div className="flex items-center gap-2 text-quiet text-[11.5px]">
+                    <Calendar className="w-3.5 h-3.5 text-accent shrink-0" />
+                    <span>Mfg Date: <strong className="text-body font-mono">{product.manufacturingDate || "2026-03-15"}</strong></span>
+                  </div>
+                  <div className="flex items-center gap-2 text-quiet text-[11.5px]">
+                    <Clock className="w-3.5 h-3.5 text-accent shrink-0" />
+                    <span>
+                      Expiry:{' '}
+                      <strong className={`font-mono ${product.isPerishable ? 'text-emerald-500 font-bold' : 'text-body'}`}>
+                        {product.expiryDate || (product.isPerishable ? '2027-10-15' : 'Lifetime Provenance')}
+                      </strong>
+                    </span>
+                  </div>
+                </div>
+
+                {product.batchNumber && (
+                  <div className="text-[10px] font-mono text-faint pt-0.5">
+                    Batch / Lot ID: <span className="text-quiet font-semibold">{product.batchNumber}</span>
+                  </div>
                 )}
               </div>
 
@@ -197,8 +239,9 @@ function ModalContent({ product, setQuickViewProduct }) {
                   >
                     <div className="frame-still flex h-24 items-center justify-center p-2">
                       <img
-                        src={rel.thumbnail}
+                        src={getSafeImageUrl(rel.thumbnail, rel.category)}
                         alt={rel.title}
+                        onError={(e) => handleImageError(e, rel.category)}
                         className="max-h-full object-contain transition-transform duration-700 group-hover:scale-105"
                       />
                     </div>

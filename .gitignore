@@ -51,3 +51,16 @@ wheels/
 *.njsproj
 *.sln
 *.sw?
+.neon
+
+# Environment Secrets
+.env
+.env*.local
+
+# Test screenshots and browser caches
+.playwright-mcp/
+/*.png
+backend/*.bak*
+backend/ecommerce.db.bak*
+*.db-shm
+*.db-wal

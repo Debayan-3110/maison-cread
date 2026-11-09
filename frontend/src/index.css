@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:where(.dark, .dark *));
+@variant dark (&:where(.dark, .dark *));
 
 @theme {
   --color-porcelain: #F7F4EE;
@@ -62,44 +62,64 @@
 }
 
 :root, .light {
-  --bg-main: #F7F4EE;
-  --bg-surface: #FFFFFF;
-  --bg-recess: #F1ECE1;
-  --text-main: #16130E;
-  --text-muted: #7C766B;
-  --text-faint: #A8A29A;
-  --border-subtle: #E4DCCE;
-  --border-soft: #EFEAE0;
-  --brand-primary: #16130E;
-  --brand-secondary: #A5813F;
-  --brand-secondary-soft: #F3EAD3;
-  --btn-solid-bg: #16130E;
-  --btn-solid-fg: #F7F4EE;
-  --scrim: rgba(24, 21, 16, 0.42);
+  /* Heritage Luxury Light Theme Palette */
+  --bg-main: #FFFDD0; /* Primary Base (The Canvas): Warm, expensive art-gallery cream */
+  --bg-surface: #FFFDF8; /* Gallery White card surface */
+  --bg-recess: #F5F1E4; /* Soft warm parchment recess */
+  --text-main: #0C0C0C; /* Primary Structure: Ink Black for headlines and authority */
+  --text-body-charcoal: #333333; /* Dark charcoal grey for soft, readable body prose */
+  --text-muted: #555555;
+  --text-faint: #777777;
+  --border-subtle: rgba(12, 12, 12, 0.18); /* Thin 1px Ink Black with slight opacity */
+  --border-soft: rgba(12, 12, 12, 0.08);
+  --brand-primary: #0C0C0C; /* Ink Black */
+  --brand-secondary: #CC5500; /* The Prestige: Burnt Orange */
+  --brand-secondary-soft: rgba(204, 85, 0, 0.12);
+  --brand-burnt-orange: #CC5500;
+  --btn-solid-bg: #CC5500; /* Burnt Orange CTA */
+  --btn-solid-fg: #0C0C0C; /* Ink Black text */
+  --scrim: rgba(12, 12, 12, 0.65);
   color-scheme: light;
 }
 
 .dark {
-  --bg-main: #12100C;
-  --bg-surface: #1B1814;
-  --bg-recess: #232019;
-  --text-main: #F3EFE6;
-  --text-muted: #A8A29A;
-  --text-faint: #7B756B;
-  --border-subtle: rgba(255, 255, 255, 0.11);
-  --border-soft: rgba(255, 255, 255, 0.06);
-  --brand-primary: #EDE6D6;
-  --brand-secondary: #C9A86A;
-  --brand-secondary-soft: rgba(201, 168, 106, 0.14);
-  --btn-solid-bg: #EDE6D6;
-  --btn-solid-fg: #16130E;
-  --scrim: rgba(4, 3, 2, 0.66);
+  --bg-main: #020202;
+  --bg-surface: #0A0A0A;
+  --bg-recess: #121212;
+  --text-main: #FFFFFF;
+  --text-muted: #888888;
+  --text-faint: #555555;
+  --border-subtle: rgba(0, 123, 167, 0.22);
+  --border-soft: rgba(255, 255, 255, 0.05);
+  --brand-primary: #FFFFFF;
+  --brand-secondary: #007BA7;
+  --brand-secondary-soft: rgba(0, 123, 167, 0.16);
+  --brand-neon-rose: #FF007F;
+  --btn-solid-bg: #007BA7;
+  --btn-solid-fg: #FFFFFF;
+  --scrim: rgba(2, 2, 2, 0.94);
   color-scheme: dark;
 }
 
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+}
+
+/* Global 500ms smooth theme transition across entire page (Cyber-Luxury Dark <-> Heritage Luxury Light) */
+html, body, #root, header, nav, main, section, div, p, span, h1, h2, h3, h4, button, a {
+  transition-property: background-color, color, border-color, fill, stroke, box-shadow, text-decoration-color;
+  transition-duration: 500ms;
+  transition-timing-function: ease-in-out;
+}
+
+.light h1, .light h2, .light h3, .light h4, .light h5, .light h6, .light .title-editorial {
+  color: #0C0C0C;
+  font-family: var(--font-display);
+}
+
+.light p {
+  color: #333333;
 }
 
 body {
@@ -112,6 +132,60 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+}
+
+/* Continuous 3-second Luxury CTA Shimmer Highlight */
+@keyframes luxuryShimmer {
+  0% {
+    transform: translateX(-150%) skewX(-20deg);
+  }
+  20%, 100% {
+    transform: translateX(250%) skewX(-20deg);
+  }
+}
+
+.animate-shimmer-continuous {
+  animation: luxuryShimmer 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Cyber-Luxury Border Cycling Animation: Cerulean Blue <-> Neon Rose */
+@keyframes cyberBorderCycle {
+  0% {
+    border-color: #007BA7;
+    box-shadow: 0 0 24px rgba(0, 123, 167, 0.45);
+  }
+  50% {
+    border-color: #FF007F;
+    box-shadow: 0 0 28px rgba(255, 0, 127, 0.55);
+  }
+  100% {
+    border-color: #007BA7;
+    box-shadow: 0 0 24px rgba(0, 123, 167, 0.45);
+  }
+}
+
+.hover-cyber-cycle:hover {
+  animation: cyberBorderCycle 3s ease-in-out infinite;
+}
+
+.laser-line-rose {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(0, 123, 167, 0.45) 20%, #FF007F 50%, rgba(0, 123, 167, 0.45) 80%, transparent 100%);
+  box-shadow: 0 0 10px rgba(255, 0, 127, 0.65), 0 0 20px rgba(0, 123, 167, 0.4);
+}
+
+.laser-line-heritage {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(12, 12, 12, 0.2) 20%, #CC5500 50%, rgba(12, 12, 12, 0.2) 80%, transparent 100%);
+  box-shadow: 0 0 10px rgba(204, 85, 0, 0.45);
+}
+
+.neon-bloom-cerulean {
+  box-shadow: 0 0 25px rgba(0, 123, 167, 0.45), inset 0 0 12px rgba(0, 123, 167, 0.18);
+}
+
+.neon-bloom-rose {
+  box-shadow: 0 0 20px rgba(255, 0, 127, 0.65);
 }
 
 /* ---------------------------- typography ---------------------------- */

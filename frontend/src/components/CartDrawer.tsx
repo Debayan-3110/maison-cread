@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { useShop } from '../context/ShopContext.tsx';
+import { useShop } from '../context/ShopContext';
 import { X, Minus, Plus, ArrowRight, Tag, Lock } from 'lucide-react';
 import { Product } from '../types/models';
 import { calculateCartTotals, formatRupees } from '../utils/commerce';
+import { getSafeImageUrl, handleImageError } from '../utils/imageFallback';
 
 export default function CartDrawer() {
   const {
@@ -94,7 +95,12 @@ export default function CartDrawer() {
                 {cart.map((item: Product & { quantity: number }) => (
                   <li key={item.id} className="flex gap-4 border-b border-hairline pb-5 last:border-0">
                     <div className="frame-still flex h-20 w-20 shrink-0 items-center justify-center p-2">
-                      <img src={item.thumbnail} alt={item.title} className="max-h-full max-w-full object-contain" />
+                      <img
+                        src={getSafeImageUrl(item.thumbnail, item.category)}
+                        alt={item.title}
+                        onError={(e) => handleImageError(e, item.category)}
+                        className="max-h-full max-w-full object-contain"
+                      />
                     </div>
 
                     <div className="min-w-0 flex-1">
@@ -168,11 +174,12 @@ export default function CartDrawer() {
                 </form>
               )}
 
-              <div className="border-t border-hairline pt-3">
-                {summaryRow('Subtotal', formatRupees(totals.subtotal))}
-                {totals.discount > 0 && summaryRow('Privilege', `-${formatRupees(totals.discount)}`, true)}
-                {summaryRow('GST (18%)', formatRupees(totals.gst))}
-                {summaryRow('Delivery', totals.shipping === 0 ? 'Complimentary' : formatRupees(totals.shipping), totals.shipping === 0)}
+              <div className="border-t border-hairline pt-3 space-y-0.5">
+                {summaryRow('Taxable Subtotal', formatRupees(totals.taxableAmount))}
+                {totals.discount > 0 && summaryRow('Privilege Discount', `-${formatRupees(totals.discount)}`, true)}
+                {summaryRow(`Central GST (CGST @ ${totals.cgstRate}%)`, formatRupees(totals.cgst))}
+                {summaryRow(`State GST (SGST @ ${totals.sgstRate}%)`, formatRupees(totals.sgst))}
+                {summaryRow('White-Glove Delivery', totals.shipping === 0 ? 'Complimentary' : formatRupees(totals.shipping), totals.shipping === 0)}
               </div>
 
               <div className="flex items-end justify-between border-t border-hairline pt-4">

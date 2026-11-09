@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Sparkles, Save, X, Loader2, CheckCircle } from 'lucide-react';
-import { useShop } from '../../context/ShopContext.tsx';
+import { useShop } from '../../context/ShopContext';
 
 const AdminIngestion: React.FC = () => {
   const { showToast } = useShop();

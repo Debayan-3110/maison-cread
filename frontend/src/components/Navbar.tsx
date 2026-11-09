@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useShop } from '../context/ShopContext.tsx';
+import { useShop } from '../context/ShopContext';
 import {
   ShoppingBag,
   Heart,
@@ -14,13 +14,35 @@ import {
   Inbox,
   X,
   User,
+  PackagePlus,
+  Cloud,
+  Compass,
 } from 'lucide-react';
+import ThemeToggle from './ThemeToggle';
 
 const statusTone: Record<string, string> = {
   online: 'bg-[#5F8C63]',
   checking: 'bg-[#C9A86A] animate-pulse',
   offline: 'bg-[#9B3B22]',
 };
+
+const CATEGORY_NAV_LABELS: Record<string, string> = {
+  all: 'All',
+  fashion: 'Fashion',
+  beauty: 'Beauty',
+  electronics: 'Electronics',
+  'home-apparels': 'Home Apparels',
+  appliances: 'Appliances',
+  toys: 'Toys',
+  books: 'Books',
+  sports: 'Sports',
+  food: 'Gourmet Food',
+  worship: 'Sacred & Worship',
+  'liquor-tobacco': 'Liquor & Tobacco 🔞',
+};
+
+const formatNavCategory = (cat: string) =>
+  CATEGORY_NAV_LABELS[cat.toLowerCase()] || cat.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
 
 export default function Navbar() {
   const {
@@ -46,6 +68,9 @@ export default function Navbar() {
     setIsSecurityModalOpen,
     setIsDevMailboxOpen,
     devEmails,
+    setIsSellerStudioOpen,
+    setIsNeonHubOpen,
+    openOrderTracker,
   } = useShop();
 
   const [isSearchFocused, setIsSearchFocused] = useState<boolean>(false);
@@ -82,11 +107,11 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-hairline bg-canvas/90 pt-safe backdrop-blur-xl">
-      <div className="bg-solid text-on-solid">
+      <div className="bg-[#0C0C0C] text-[#FFFDD0] border-b border-[#0C0C0C]/80">
         <div className="shell flex h-7 items-center justify-between gap-2 text-[9px] font-medium uppercase tracking-[0.16em] xs:text-[10px] xs:tracking-[0.2em] sm:h-8">
           <span className="hidden items-center gap-2 truncate xs:flex">
             <Sparkles className="h-3 w-3 shrink-0 opacity-70" strokeWidth={1.5} />
-            <span className="truncate">Insured delivery over 1,999</span>
+            <span className="truncate">Complimentary insured delivery over ₹1,999 • All 11 Departments Live</span>
           </span>
           <span className="flex items-center gap-2">
             <span className={`h-1.5 w-1.5 rounded-full ${statusTone[backendStatus] || statusTone.offline}`} />
@@ -104,10 +129,10 @@ export default function Navbar() {
             aria-label="Maison Cread home"
           >
             <span className="block truncate font-display text-[19px] leading-none tracking-tight text-body xs:text-[20px] sm:text-[23px]">
-              Maison Cread
+              ShopCread
             </span>
             <span className="mt-1 hidden text-[9px] font-medium uppercase tracking-[0.32em] text-faint phone-xl:block sm:block">
-              Objects of desire
+              Luxury Commerce OS
             </span>
           </button>
 
@@ -121,9 +146,9 @@ export default function Navbar() {
                     setSelectedCategory(cat);
                     goToCatalog();
                   }}
-                  className="relative py-1 text-[12.5px] font-medium capitalize tracking-wide"
+                  className="relative py-1 text-[12.5px] font-medium tracking-wide"
                 >
-                  <span className={isActive ? 'text-body' : 'text-quiet hover:text-body'}>{cat.replace('-', ' ')}</span>
+                  <span className={isActive ? 'text-body font-semibold' : 'text-quiet hover:text-body'}>{formatNavCategory(cat)}</span>
                   <span
                     className={`absolute -bottom-0.5 left-0 h-px w-full origin-left bg-accent transition-transform duration-300 ${
                       isActive ? 'scale-x-100' : 'scale-x-0'
@@ -191,15 +216,56 @@ export default function Navbar() {
             </div>
 
             <button
-              onClick={toggleTheme}
-              aria-label="Toggle appearance"
-              className="btn-ghost h-10 w-10 rounded-full p-0"
+              onClick={() => setIsNeonHubOpen(true)}
+              aria-label="Open Cloud Infrastructure Hub"
+              title="Cloud Stack: Neon (Postgres, S3, Edge), CockroachDB Labs Storage & Cloudinary CDN"
+              className="hidden md:inline-flex items-center gap-1.5 rounded-full border border-emerald-500/40 bg-emerald-500/10 px-3 py-1.5 text-[11.5px] font-semibold text-emerald-600 dark:text-emerald-400 transition-all hover:bg-emerald-500 hover:text-white hover:shadow-sm"
             >
-              {theme === 'dark' ? (
-                <Moon className="h-[18px] w-[18px]" strokeWidth={1.5} />
-              ) : (
-                <Sun className="h-[18px] w-[18px]" strokeWidth={1.5} />
-              )}
+              <Cloud className="h-3.5 w-3.5" />
+              <span>Cloud Stack</span>
+            </button>
+
+            <button
+              onClick={() => setIsSellerStudioOpen(true)}
+              aria-label="Open Seller Studio"
+              title="Seller Studio: List Product & Manage Fresh Inventory"
+              className="hidden sm:inline-flex items-center gap-1.5 rounded-full border border-accent/40 bg-accent-soft/80 px-3 py-1.5 text-[11.5px] font-semibold text-accent transition-all hover:bg-accent hover:text-[#16130E] hover:shadow-sm"
+            >
+              <PackagePlus className="h-3.5 w-3.5" />
+              <span>+ List Product</span>
+            </button>
+
+            {/* Precision-Milled Luxury Theme Switch */}
+            <ThemeToggle />
+
+            {/* Sovereign Order & Shipment Tracking Portal */}
+            <button
+              onClick={() => {
+                window.history.pushState({}, '', '/tracking');
+                window.dispatchEvent(new PopStateEvent('popstate'));
+              }}
+              aria-label="Track shipment portal"
+              title="Open Sovereign Shipment Tracking Website"
+              className="btn-ghost relative h-10 w-10 rounded-full p-0 flex items-center justify-center text-body hover:text-cyan-400 transition-colors"
+            >
+              <Compass className="h-[18px] w-[18px]" strokeWidth={1.5} />
+            </button>
+
+            {/* Philanthropic Sanctuary & Donation Portal */}
+            <button
+              onClick={() => {
+                window.history.pushState({}, '', '/donate');
+                window.dispatchEvent(new PopStateEvent('popstate'));
+              }}
+              aria-label="Philanthropic Sanctuary Portal"
+              title="Give Hope to Orphanages & Elder Sanctuaries"
+              className="btn-ghost relative h-10 w-10 rounded-full p-0 flex items-center justify-center text-rose-400 hover:text-rose-300 transition-colors"
+            >
+              <Heart className="h-[18px] w-[18px] fill-rose-500/20 text-rose-400" strokeWidth={1.8} />
+              <span className="absolute -top-0.5 -right-0.5 flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-rose-500"></span>
+              </span>
             </button>
 
             <button
@@ -251,10 +317,26 @@ export default function Navbar() {
                     </div>
                     <div className="p-1.5">
                       <button
+                        onClick={() => { setIsSellerStudioOpen(true); setShowUserMenu(false); }}
+                        className="flex w-full items-center gap-3 rounded-[10px] px-3 py-2.5 text-left text-[12.5px] font-medium text-accent hover:bg-recess"
+                      >
+                        <PackagePlus className="h-4 w-4" strokeWidth={1.5} /> Seller Studio (+ List Product)
+                      </button>
+                      <button
                         onClick={() => { setIsOrderHistoryOpen(true); setShowUserMenu(false); }}
                         className="flex w-full items-center gap-3 rounded-[10px] px-3 py-2.5 text-left text-[12.5px] text-quiet hover:bg-recess hover:text-body"
                       >
                         <PackageCheck className="h-4 w-4" strokeWidth={1.5} /> My orders
+                      </button>
+                      <button
+                        onClick={() => {
+                          window.history.pushState({}, '', '/tracking');
+                          window.dispatchEvent(new PopStateEvent('popstate'));
+                          setShowUserMenu(false);
+                        }}
+                        className="flex w-full items-center gap-3 rounded-[10px] px-3 py-2.5 text-left text-[12.5px] text-cyan-400 font-semibold hover:bg-recess"
+                      >
+                        <Compass className="h-4 w-4 text-cyan-400" strokeWidth={1.5} /> Track Shipment Portal
                       </button>
                       <button
                         onClick={() => { setIsSecurityModalOpen(true); setShowUserMenu(false); }}

@@ -8,7 +8,11 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from dotenv import load_dotenv
-from openai import OpenAI, OpenAIError
+try:
+    from openai import OpenAI, OpenAIError
+except ImportError:
+    OpenAI = None  # type: ignore
+    OpenAIError = Exception  # type: ignore
 
 # Load environment variables from .env file
 load_dotenv()
@@ -50,7 +54,12 @@ class ChatResponse(BaseModel):
     reply: str
 
 # Helper to get configured OpenAI client
-def get_openai_client() -> OpenAI:
+def get_openai_client():
+    if OpenAI is None:
+        raise HTTPException(
+            status_code=500,
+            detail="OpenAI library is not installed in the current environment."
+        )
     api_key = os.getenv("OPENAI_API_KEY")
     if not api_key:
         raise HTTPException(
