@@ -56,7 +56,9 @@ export function handleImageError(
   }
 }
 
-export const CLOUDINARY_CLOUD_NAME = 'c40zxlko';
+export const CLOUDINARY_CLOUD_NAME = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_CLOUDINARY_CLOUD_NAME)
+  ? String(import.meta.env.VITE_CLOUDINARY_CLOUD_NAME).trim()
+  : 'c40zxlko';
 
 /**
  * Transforms any image URL into a Cloudinary edge-cached CDN URL with auto WebP/AVIF format and perceptual compression.

@@ -35,3 +35,4 @@ try {
   console.error('[build.js] Error during frontend build:', err.message);
   process.exit(1);
 }
+

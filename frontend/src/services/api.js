@@ -1,4 +1,8 @@
-const BASE_URL = '/api';
+const RAW_BASE_URL = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_API_BASE_URL)
+  ? String(import.meta.env.VITE_API_BASE_URL).trim().replace(/\/+$/, '')
+  : '/api';
+
+const BASE_URL = RAW_BASE_URL.endsWith('/api') ? RAW_BASE_URL : `${RAW_BASE_URL}/api`;
 
 // Token Management
 let currentAccessToken = localStorage.getItem('shopcread_access_token') || null;
