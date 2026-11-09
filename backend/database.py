@@ -13,13 +13,50 @@ from contextlib import contextmanager
 from typing import Optional, List, Dict, Any, Tuple
 
 _ROOT = Path(__file__).resolve().parent
-DB_PATH = str(_ROOT / "ecommerce.db")
+
+def get_db_path() -> str:
+    """
+    Returns the database path. In serverless runtime environments (such as Vercel
+    or AWS Lambda) where root is read-only, copies ecommerce.db to /tmp so writes,
+    WAL journals, and updates work seamlessly.
+    """
+    is_serverless = bool(
+        os.getenv("VERCEL")
+        or os.getenv("VERCEL_ENV")
+        or os.getenv("AWS_LAMBDA_FUNCTION_NAME")
+        or os.getenv("LAMBDA_TASK_ROOT")
+    )
+    if is_serverless:
+        tmp_db = Path("/tmp/ecommerce.db")
+        if not tmp_db.exists() or tmp_db.stat().st_size == 0:
+            candidates = [
+                _ROOT / "ecommerce.db",
+                _ROOT.parent / "ecommerce.db",
+                Path("backend/ecommerce.db"),
+                Path("ecommerce.db"),
+            ]
+            for cand in candidates:
+                if cand.exists() and cand.stat().st_size > 0:
+                    import shutil
+                    try:
+                        shutil.copy2(cand, tmp_db)
+                        break
+                    except Exception as e:
+                        print(f"Warning: Failed to copy {cand} to /tmp: {e}")
+        return str(tmp_db)
+    return str(_ROOT / "ecommerce.db")
+
+DB_PATH = get_db_path()
 
 @contextmanager
 def get_db_connection():
-    conn = sqlite3.connect(DB_PATH)
+    db_file = get_db_path()
+    conn = sqlite3.connect(db_file)
     conn.row_factory = sqlite3.Row
-    conn.execute("PRAGMA journal_mode=WAL")
+    try:
+        conn.execute("PRAGMA journal_mode=WAL")
+    except Exception:
+        pass
     try:
         yield conn
         conn.commit()
